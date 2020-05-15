@@ -1,11 +1,271 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+<head>
+    <% include ./partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./partials/header %>
+</header>
+
+<main>
+    <!-- Container starts -->
+    <div class="container">
+        <!-- News home section starts -->
+        <div class="news-home-section">
+            <!-- Section header starts -->
+            <div class="section-header mb-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- Section description starts -->
+                        <div class="section-description mb-3">
+                            <!-- User greeting starts -->
+                            <div class="user-greeting mb-3">
+                                <h1 class="mb-0">Hello <span>Aaish</span></h1>
+                                <p class="mb-0 text-ct-secondary">Hope you are safe, here is the latest news.</p>
+                            </div>
+                            <!-- User greeting ends -->
+                            <!-- News icons description starts -->
+                            <div class="news-icons-description d-flex justify-content-between align-items-center">
+                                <!-- Trusted news icon starts -->
+                                <div class="trusted-news-icon news-icon d-flex align-items-center">
+                                    <i class="fas fa-shield-virus fa-lg text-ct-green mr-3"></i>
+                                    <h4 class="mb-0">Trusted News Source</h4>
+                                </div>
+                                <!-- Trusted news icon ends -->
+                                <!-- Un-Trusted news icon starts -->
+                                <div class="un-trusted-news-icon news-icon d-flex align-items-center">
+                                    <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-3"></i>
+                                    <h4 class="mb-0">Un-Trusted News Source</h4>
+                                </div>
+                                <!-- Un-Trusted news icon ends -->
+                            </div>
+                            <!-- News icons description ends -->
+                        </div>
+                        <!-- Section description ends -->
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- Covid status starts -->
+                        <div class="covid-status bg-ct-card-dark p-3 rounded shadow">
+                            <!-- Status header starts -->
+                            <div class="status-header d-flex align-items-center justify-content-between mb-3">
+                                <h4 class="mb-0 font-weight-bold">Worldwide Cases</h4>
+                                <h4 class="mb-0">Updated: <span>20 mins ago</span></h4>
+                            </div>
+                            <!-- Status header ends -->
+                            <!-- Case overview starts -->
+                            <div class="case-overview d-flex align-items-start justify-content-between">
+                                <!-- Confirmed starts -->
+                                <div class="confirmed text-center text-ct-amber">
+                                    <h4 class="mb-0 font-weight-bold">Confirmed</h4>
+                                    <h3 class="mb-0">4.26M</h3>
+                                    <h4 class="mb-0">&#91;<span>+82,591</span>&#93;</h4>
+                                </div>
+                                <!-- Confirmed ends -->
+                                <!-- Recovered starts -->
+                                <div class="recovered text-center text-ct-green">
+                                    <h4 class="mb-0 font-weight-bold">Recovered</h4>
+                                    <h3 class="mb-0">1.49M</h3>
+                                </div>
+                                <!-- Recovered ends -->
+                                <!-- Deaths starts -->
+                                <div class="deaths text-center text-ct-red">
+                                    <h4 class="mb-0 font-weight-bold">Deaths</h4>
+                                    <h3 class="mb-0">292K</h3>
+                                    <h4 class="mb-0">&#91;<span>+4,261</span>&#93;</h4>
+                                </div>
+                                <!-- Deaths ends -->
+                            </div>
+                            <!-- Case overview ends -->
+                        </div>
+                        <!-- Covid status ends -->
+                    </div>
+                </div>
+            </div>
+            <!-- Section header ends -->
+
+            <!-- News section starts -->
+            <div class="news-section">
+                <!-- Latest news section starts -->
+                <div class="latest-news-section mb-5">
+                    <!-- Section header starts -->
+                    <div class="section-header d-flex align-items-center justify-content-between mb-3">
+                        <div class="description d-flex align-items-center">
+                            <i class="fas fa-shield-virus fa-2x text-ct-green mr-3"></i>
+                            <h2 class="mb-0">Latest News</h2>
+                        </div>
+                        <a href="">View More</a>
+                    </div>
+                    <!-- Section header ends -->
+                    <!-- Latest news starts -->
+                    <div class="latest-news">
+                        <div class="row">
+                            <div class="col-sm-6 mb-3">
+                                <div class="top-news">
+                                    <div class="news-article bg-ct-card-dark shadow rounded">
+                                        <div class="news-article-img">
+                                            <img src="https://images.unsplash.com/photo-1585264084461-02539d863da6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="COVID" class="img-fluid rounded">
+                                        </div>
+                                        <div class="news-article-desc p-3">
+                                            <h2 class="mb-0">What is COVID 19 All About?</h2>
+                                            <h4 class="text-ct-secondary">Gulf News</h4>
+                                            <p class="mb-0">Last year, we announced we were redesigning the channel page to improve the viewer experience and give streamers more ways to show the world who they are.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="more-news">
+                                    <div class="news-articles">
+                                        <div class="news-article bg-ct-card-dark shadow rounded mb-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="news-article-img">
+                                                        <img src="https://images.unsplash.com/photo-1586015555917-809317547a38?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="COVID" class="rounded">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="news-article-desc p-3">
+                                                        <h4 class="mb-0 font-weight-bold">What is COVID 19 All About?</h3>
+                                                        <h4 class="text-ct-secondary">Gulf News</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="news-article bg-ct-card-dark shadow rounded mb-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="news-article-img">
+                                                        <img src="https://images.unsplash.com/photo-1583947581279-4eec08383c38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1526&q=80" alt="COVID" class="rounded">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="news-article-desc p-3">
+                                                        <h4 class="mb-0 font-weight-bold">What is COVID 19 All About?</h3>
+                                                        <h4 class="text-ct-secondary">Gulf News</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="news-article bg-ct-card-dark shadow rounded mb-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="news-article-img">
+                                                        <img src="https://images.unsplash.com/photo-1588775005506-cc9c22cdef84?ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80" alt="COVID" class="rounded">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="news-article-desc p-3">
+                                                        <h4 class="mb-0 font-weight-bold">What is COVID 19 All About?</h3>
+                                                        <h4 class="text-ct-secondary">Gulf News</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Latest news ends -->
+                </div>
+                <!-- Latest news section ends -->
+                <!-- Fake news section starts -->
+                <div class="fake-news-section mb-5">
+                    <!-- Section header starts -->
+                    <div class="section-header d-flex align-items-center justify-content-between mb-3">
+                        <div class="description d-flex align-items-center">
+                            <i class="fas fa-exclamation-triangle fa-2x text-ct-amber mr-3"></i>
+                            <h2 class="mb-0">Fake News</h2>
+                        </div>
+                        <a href="">View More</a>
+                    </div>
+                    <!-- Section header ends -->
+                    <!-- Latest news starts -->
+                    <div class="latest-news">
+                        <div class="row">
+                            <div class="col-sm-6 mb-3">
+                                <div class="top-news">
+                                    <div class="news-article bg-ct-card-dark shadow rounded">
+                                        <div class="news-article-img">
+                                            <img src="https://images.unsplash.com/photo-1585264084461-02539d863da6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="COVID" class="img-fluid rounded">
+                                        </div>
+                                        <div class="news-article-desc p-3">
+                                            <h2 class="mb-0">What is COVID 19 All About?</h2>
+                                            <h4 class="text-ct-secondary">Gulf News</h4>
+                                            <p class="mb-0">Last year, we announced we were redesigning the channel page to improve the viewer experience and give streamers more ways to show the world who they are.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="more-news">
+                                    <div class="news-articles">
+                                        <div class="news-article bg-ct-card-dark shadow rounded mb-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="news-article-img">
+                                                        <img src="https://images.unsplash.com/photo-1586015555917-809317547a38?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="COVID" class="rounded">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="news-article-desc p-3">
+                                                        <h4 class="mb-0 font-weight-bold">What is COVID 19 All About?</h3>
+                                                        <h4 class="text-ct-secondary">Gulf News</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="news-article bg-ct-card-dark shadow rounded mb-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="news-article-img">
+                                                        <img src="https://images.unsplash.com/photo-1583947581279-4eec08383c38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1526&q=80" alt="COVID" class="rounded">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="news-article-desc p-3">
+                                                        <h4 class="mb-0 font-weight-bold">What is COVID 19 All About?</h3>
+                                                        <h4 class="text-ct-secondary">Gulf News</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="news-article bg-ct-card-dark shadow rounded mb-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="news-article-img">
+                                                        <img src="https://images.unsplash.com/photo-1588775005506-cc9c22cdef84?ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80" alt="COVID" class="rounded">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="news-article-desc p-3">
+                                                        <h4 class="mb-0 font-weight-bold">What is COVID 19 All About?</h3>
+                                                        <h4 class="text-ct-secondary">Gulf News</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Latest news ends -->
+                </div>
+                <!-- Fake news section ends -->
+            </div>
+            <!-- News section ends -->
+        </div>
+        <!-- News home section ends -->
+    </div>
+    <!-- Container ends -->
+</main>
+
+<footer>
+    <% include ./partials/footer %>
+</footer>
+
+</body>
 </html>
