@@ -3,9 +3,9 @@ let router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', {
-    title: 'Covid Times',
-  });
+  res.render('sources', {
+      title: 'Trusted Source',
+    });
 });
 
 module.exports = router;

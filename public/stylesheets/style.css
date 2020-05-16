@@ -31,6 +31,10 @@ h5 {
   font-weight: 400;
 }
 
+.util-hidden {
+  display: none;
+}
+
 .text-ct-secondary {
   color: #A5A5A5;
 }
@@ -51,10 +55,9 @@ h5 {
   background-color: #131313;
 }
 
-/* .latest-news {
-  display: flex;
-  flex-direction: column;
-} */
+.bg-ct-card-dark-active {
+  background-color: #212121;
+}
 
 .top-news img {
   width: 100%;
@@ -68,9 +71,69 @@ h5 {
   object-fit: cover;
 }
 
-/* @media (min-width: 1024px) {
-  .latest-news {
+.list-sources > .sources > .source > .source-information > .source-image > img {
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.view-source-information > .source-information > .source-image > img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .source-information-active > .source-information {
+    flex-direction: column;
+  }
+  
+  .source-information-active > .source-information > .source-rank {
+    display: none;
+  }
+  
+  .source-information-active > .source-information > .source-image > img{
+    width: 250px !important;
+    height: 250px !important;
+  }
+  
+  .source-information-active > .source-information > .source-description {
+    padding: 1rem;
+  }
+  
+  .source-information-active > .source-information > .source-description > .source-header {
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 3rem;
   }
-} */
+  
+  .source-information-active > .source-information > .source-description > .source-header > .source-name {
+    font-size: 30px;
+    font-weight: 500;
+  }
+  
+  .source-information-active > .source-information > .source-description > .source-header > .source-trust-rate {
+    text-align: center;
+  }
+  
+  .source-information-active > .source-information > .source-description > .source-header > .source-trust-rate > .rating {
+    font-size: 30px;
+    font-weight: 500;
+  }
+  
+  .source-information-active > .source-information > .source-description > .source-header > .source-trust-rate > .rating-label {
+    display: block;
+  }
+  
+  .source-information-active > .source-information > .source-description > .source-body {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .view-source-information {
+    display: block;
+  }
+}
