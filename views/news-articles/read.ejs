@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <!-- Container starts -->
+    <div class="container">
+        <!-- Read news article starts -->
+        <div class="read-news-article">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Section header starts -->
+                    <div class="section-header mb-5">
+                        <!-- Section description starts -->
+                        <div class="section-description mb-3">
+                            <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
+                                <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
+                                <h4 class="mb-0">Trusted News Source</h4>
+                            </div>
+                            <h1 class="mb-3"><%= newsArticle.title %></h1>
+                            <div class="news-metadata d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="mb-0"><a href="" class="text-decoration-none text-ct-secondary"><%= newsArticle.source.name %></a></h4>
+                                <h4 class="text-ct-secondary mb-0"><%= newsArticle.publishedAt.substring(0,10) %></h4>
+                            </div>
+                        </div>
+                        <!-- Section description ends -->
+                    </div>
+                    <!-- Section header ends -->
+                    <!-- News article starts -->
+                    <div class="news-article mb-5">
+                        <div class="news-article-img h-100 mb-3">
+                            <img src="<%= newsArticle.urlToImage %>" alt="<%= newsArticle.title %>" class="img-fluid rounded">
+                        </div>
+                        <div class="news-article-desc mb-3">
+                            <p><%= newsArticle.description %></p>
+                            <a href="<%= newsArticle.url %>" class="btn btn-ct-green btn-block btn-lg" target="_blank"><i class="far fa-newspaper mr-2"></i>Read Full Article</a>
+                        </div>
+                        <div class="news-article-options">
+                            <h4>Help us fight fake news!</h4>
+                            <div class="options">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-block btn-ct-green btn-lg mb-2"><i class="far fa-thumbs-up mr-2"></i>This Article Was Helpful</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-block btn-ct-amber btn-lg mb-2 "><i class="far fa-thumbs-down mr-2"></i>This Article Was Not Helpful</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News article ends -->
+                </div>
+                <div class="col-sm-12">
+                    <!-- List similar articles starts -->
+                    <div class="list-similar-articles">
+                        <h2>Similar articles by <%= newsArticle.source.name %></h2>
+                        <!-- Similar articles start -->
+                        <div class="similar-articles">
+                            <div class="owl-carousel owl-theme">
+                            <% for (let [key, value] of Object.entries(similarArticles)) { %>
+                            <!-- Similar article start -->
+                            <div class="similar-article bg-ct-card-dark shadow rounded">
+                                <div class="news-article-img">
+                                    <img src="<%= value.urlToImage %>" alt="<%= value.title %>" class="img-fluid rounded">
+                                </div>
+                                <div class="news-article-desc p-3">
+                                    <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
+                                        <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
+                                        <h4 class="mb-0">Trusted News Source</h4>
+                                    </div>
+                                    <h4 class="mb-2 font-weight-bold"><%= value.title %></h3>
+                                    <h4 class="text-ct-secondary"><%= value.source.name %></h4>
+                                </div>
+                            </div>
+                            <!-- Similar article ends -->
+                            <% } %>
+                            </div>
+                        </div>
+                        <!-- Similar articles ends -->
+                    </div>
+                    <!-- List similar articles ends -->
+                </div>
+            </div>
+        </div>
+        <!-- Read news article ends -->
+    </div>
+    <!-- Container ends -->
+</main>
+<script>
+    $('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        }
+    }
+    });
+</script>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

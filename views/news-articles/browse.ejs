@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <!-- Container starts -->
+    <div class="container">
+        <!-- News article section starts -->
+        <div class="news-article-section">
+            <!-- Section header starts -->
+            <div class="section-header mb-5">
+                <!-- Section description starts -->
+                <div class="section-description mb-3">
+                    <h1 class="mb-0">News Articles</h1>
+                    <p class="mb-0 text-ct-secondary">View latest news articles.</p>
+                </div>
+                <!-- Section description ends -->
+                <!-- News icons description starts -->
+                <div class="news-icons-description d-flex justify-content-start align-items-center mb-3">
+                    <!-- Trusted news icon starts -->
+                    <div class="trusted-news-icon news-icon d-flex align-items-center mr-3">
+                        <i class="fas fa-shield-virus fa-lg text-ct-green mr-3"></i>
+                        <h4 class="mb-0">Trusted News Source</h4>
+                    </div>
+                    <!-- Trusted news icon ends -->
+                    <!-- Un-Trusted news icon starts -->
+                    <div class="un-trusted-news-icon news-icon d-flex align-items-center">
+                        <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-3"></i>
+                        <h4 class="mb-0">Un-Trusted News Source</h4>
+                    </div>
+                    <!-- Un-Trusted news icon ends -->
+                </div>
+                <!-- News icons description ends -->
+                <!-- Search section starts -->
+                <div class="search-section">
+                    <div class="row">
+                        <div class="col-sm-10 col-8 pr-1">
+                            <div class="form-group">
+                                <input type="text" class="form-control mr-1" id="search-field" aria-describedby="search-field" placeholder="Search" aria-label="search-field" name="search-field">
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-4 pl-0">
+                            <button type="submit" class="btn btn-block btn-outline-success">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search section ends -->
+            </div>
+            <!-- Section header ends -->
+            <!-- List news articles starts -->
+            <div class="list-news-articles">
+                <!-- News articles starts -->
+                <div class="news-articles">
+                    <% for (let [key, value] of Object.entries(newsArticles)) { %>
+                        <!-- News article starts -->
+                        <div class="news-article bg-ct-card-dark shadow rounded mb-3">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="news-article-img h-100">
+                                        <img src="<%= value.urlToImage %>" alt="<%= value.title %>" class="img-fluid rounded">
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="news-article-desc p-3">
+                                        <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
+                                            <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
+                                            <h4 class="mb-0">Trusted News Source</h4>
+                                        </div>
+                                        <h2 class="mb-3"><a href="/news-articles/<%= key %>" class="text-decoration-none text-white"><%= value.title %></a></h2>
+                                        <div class="news-metadata d-flex justify-content-between align-items-center mb-3">
+                                            <h4 class="mb-0"><a href="" class="text-decoration-none text-ct-secondary"><%= value.source.name %></a></h4>
+                                            <h4 class="text-ct-secondary mb-0"><%= value.publishedAt.substring(0,10) %></h4>
+                                        </div>
+                                        <p class="mb-3"><%= value.description %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- News article ends -->
+                    <% } %>
+                </div>
+                <!-- News articles ends -->
+            </div>
+            <!-- List news articles ends -->
+        </div>
+        <!-- News article section ends -->
+    </div>
+    <!-- Container ends -->
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
