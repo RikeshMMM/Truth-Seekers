@@ -1,3 +1,5 @@
+<!-- TODO: Add article links  -->
+<!-- TODO: Add date to article -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,8 +110,12 @@
                                             <img src="<%= latestArticleTop[0].urlToImage %>" alt="COVID" class="img-fluid rounded">
                                         </div>
                                         <div class="news-article-desc p-3">
-                                            <h2 class="mb-0"><%= latestArticleTop[0].title %></h2>
-                                            <h4 class="text-ct-secondary"><%= latestArticleTop[0].source.name %></h4>
+                                            <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
+                                                <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
+                                                <h4 class="mb-0">Trusted News Source</h4>
+                                            </div>
+                                            <h2 class="mb-3"><%= latestArticleTop[0].title %></h2>
+                                            <h4 class="text-ct-secondary mb-3"><%= latestArticleTop[0].source.name %></h4>
                                             <p class="mb-0"><%= latestArticleTop[0].description %></p>
                                         </div>
                                     </div>
@@ -122,13 +128,17 @@
                                             <div class="news-article bg-ct-card-dark shadow rounded mb-3">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <div class="news-article-img">
-                                                            <img src="<%= article.urlToImage %>" alt="COVID" class="rounded">
+                                                        <div class="news-article-img h-100">
+                                                            <img src="<%= article.urlToImage %>" alt="COVID" class="rounded img-fluid">
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="news-article-desc p-3">
-                                                            <h4 class="mb-0 font-weight-bold"><%= article.title %></h3>
+                                                            <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
+                                                                <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
+                                                                <h4 class="mb-0">Trusted News Source</h4>
+                                                            </div>
+                                                            <h4 class="mb-3 font-weight-bold"><%= article.title %></h3>
                                                             <h4 class="text-ct-secondary"><%= article.source.name %></h4>
                                                         </div>
                                                     </div>
@@ -164,7 +174,11 @@
                                             <img src="<%= fakeArticleTop[0].urlToImage %>" alt="COVID" class="img-fluid rounded">
                                         </div>
                                         <div class="news-article-desc p-3">
-                                            <h2 class="mb-0"><%= fakeArticleTop[0].title %></h2>
+                                            <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
+                                                <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-2"></i>
+                                                <h4 class="mb-0">Un-Trusted News Source</h4>
+                                            </div>
+                                            <h2 class="mb-3"><%= fakeArticleTop[0].title %></h2>
                                             <h4 class="text-ct-secondary"><%= fakeArticleTop[0].source.name %></h4>
                                             <p class="mb-0"><%= fakeArticleTop[0].description %></p>
                                         </div>
@@ -178,13 +192,17 @@
                                         <div class="news-article bg-ct-card-dark shadow rounded mb-3">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <div class="news-article-img">
+                                                    <div class="news-article-img h-100">
                                                         <img src="<%= article.urlToImage %>" alt="COVID" class="rounded">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="news-article-desc p-3">
-                                                        <h4 class="mb-0 font-weight-bold"><%= article.title %></h3>
+                                                        <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
+                                                            <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-2"></i>
+                                                            <h4 class="mb-0">Un-Trusted News Source</h4>
+                                                        </div>
+                                                        <h4 class="mb-3 font-weight-bold"><%= article.title %></h3>
                                                         <h4 class="text-ct-secondary"><%= article.source.name %></h4>
                                                     </div>
                                                 </div>
