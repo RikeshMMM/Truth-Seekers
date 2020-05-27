@@ -133,6 +133,22 @@ h5, .h5 {
   background-color: #212121;
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #7CB342;
+}
+
+a {
+  color: #ffff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #679735;
+  text-decoration: underline;
+}
+
 .top-news img {
   width: 100%;
   height: 325px;

@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /** GET : View user profile */
 router.get('/:userID', function(req, res, next) {
