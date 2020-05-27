@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <!-- Container starts -->
+    <div class="container">
+        <!-- User profile read section starts -->
+        <div class="user-profile-read-section">
+            <!-- Section header starts -->
+            <div class="section-header mb-5">
+                <!-- User profile starts -->
+                <div class="user-profile d-flex flex-column align-items-center">
+                    <!-- User image starts -->
+                    <div class="user-image mb-3">
+                        <img src="<%= user.profilePicture %>" alt="<%= user.name %>" class="img-fluid rounded-circle">
+                    </div>
+                    <!-- User image ends -->
+                    <!-- User details starts -->
+                    <div class="user-details text-center">
+                        <h2 class="mb-0"><%= user.name %></h2>
+                        <h4 class="mb-0 text-ct-secondary"><%= user.role %></h4>
+                    </div>
+                    <!-- User details ends -->
+                </div>
+                <!-- User profile ends -->
+            </div>
+            <!-- Section header ends -->
+            <!-- User settings starts -->
+            <div class="user-settings">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item list-group-item-ct-action list-group-item-ct-dark h4"><i class="fas fa-shield-virus fa-lg text-ct-green mr-3"></i>Rated News Articles</div>
+                    <div class="list-group-item list-group-item-ct-action list-group-item-ct-dark h4"><i class="fas fa-user fa-lg mr-3"></i>Account Settings</div>
+                    <div class="list-group-item list-group-item-ct-action list-group-item-ct-dark h4"><i class="fas fa-bell fa-lg mr-3"></i>Notification Settings</div>
+                    <div class="list-group-item list-group-item-ct-action list-group-item-ct-dark h4"><i class="fas fa-universal-access fa-lg mr-3"></i>Accessibility Settings</div>
+                    <div class="list-group-item list-group-item-ct-action list-group-item-ct-dark h4"><i class="fas fa-question-circle fa-lg mr-3"></i>Help</div>
+                </div>
+            </div>
+            <!-- User settings ends -->
+        </div>
+        <!-- User profile read section ends -->
+    </div>
+    <!-- Container ends -->
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
