@@ -3,11 +3,12 @@ const router = express.Router();
 
 const {getNewsArticles} = require('./news/index');
 
-/* GET home page. */
+/** GET : View home page */
 router.get('/', async (req, res, next) => {
   // TODO: Send object with article id instead of just array of articles
   // Get news articles with unique id from database
   const newsArticlesObject = (await getNewsArticles()).val();
+  console.log(newsArticlesObject);
 
   // Get news articles as array
   const newsArticles = Object.values(newsArticlesObject);
@@ -19,6 +20,11 @@ router.get('/', async (req, res, next) => {
     fakeArticleTop: newsArticles.slice(4,6),
     fakeArticles: newsArticles.slice(5,8),
   });
+});
+
+/** GET: View introduction page */
+router.get('/introduction', async (req, res, next) => {
+  
 });
 
 module.exports = router;
