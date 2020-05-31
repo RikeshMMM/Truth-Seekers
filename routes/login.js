@@ -39,7 +39,7 @@ router.post('/verify', async (req, res, next) => {
 
     res.cookie("userData", account);
     console.log("#############################################################")
-    console.log(req.cookies)
+    // console.log(req.cookies)
 
     if(valid == false){
  
@@ -49,9 +49,9 @@ router.post('/verify', async (req, res, next) => {
         });
     }
     else{
-    console.log(user)
-    console.log(password)
-    console.log(account)
+    // console.log(user)
+    // console.log(password)
+    // console.log(account)
     res.redirect('/');
     }
   });

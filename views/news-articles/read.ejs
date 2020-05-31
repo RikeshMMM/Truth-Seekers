@@ -45,11 +45,26 @@
                         </div>
                         <div class="news-article-desc mb-3">
                             <p><%= newsArticle.description %></p>
+                            <input type="text" id="articleID" hidden><%= articleID %></p>
                             <a href="<%= newsArticle.url %>" class="btn btn-ct-green btn-block btn-lg" target="_blank"><i class="far fa-newspaper mr-2"></i>Read Full Article</a>
                         </div>
                         <div class="news-article-options">
                             <h4>Help us fight fake news!</h4>
+                            <%if (newsArticle.type == "pending"){ %>
+                                <h4> Rate the authenticity of the article using the slider below. </h4>
+                                <form action="/news-articles/article-rating" method="post">
+                                <input type="hidden" name="articleID" value="<%= articleID %>">
+                                <div class="form-group">
+                                <input class="mb-3"  type="range" min="0" name="rating" max="100"  step="1" value="50">
+                                <div class="w-100 text-center">
+                                    <output class="mt-2">50</output><span style="font-size: 15px;">%</span>
+                                </div>
+                                <button type="submit" class="btn btn-block btn-ct-green btn-lg mb-2">Submit</button>
+                                </div>
+                            </form>
+                            <% } %>
                             <div class="options">
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <button class="btn btn-block btn-ct-green btn-lg mb-2"><i class="far fa-thumbs-up mr-2"></i>This Article Was Helpful</button>
@@ -114,6 +129,33 @@
     }
     });
 </script>
+
+<script>
+
+    var $element = $('input[type="range"]');
+    var $output = $('output');
+    var $articleID = $('articleID');
+    
+    function updateOutput(el, val) {
+        el.textContent = val;
+     }
+    
+
+    $element
+      .rangeslider({
+        polyfill: false,
+        onInit: function() {
+          updateOutput($output[0], this.value);
+        }
+      })
+      .on('input', function() {
+        updateOutput($output[0], this.value);
+      })
+      .on('change', function() {
+        update(this.value);
+        console.log(this.value)
+      });
+</script>    
 
 <footer>
     <% include ../partials/footer %>

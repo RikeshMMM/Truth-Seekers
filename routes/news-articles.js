@@ -15,6 +15,16 @@ router.get('/', async (req, res, next) => {
     });
 });
 
+router.post('/article-rating', async (req, res, next) => {
+  // Get news articles with unique id from database
+  const { articleID, rating } = req.body;
+  const { userData } = req.cookies;
+
+  console.log(articleID, rating, userData)
+  // Render the articles
+ 
+});
+
 /** GET : View news article */
 router.get('/:articleID', async (req, res, next) => {
   // Get article ID from request params
@@ -34,6 +44,7 @@ router.get('/:articleID', async (req, res, next) => {
   // Render the article
   res.render('news-articles/read', {
     title: newsArticle.title,
+    articleID : articleID,
     newsArticle,
     similarArticles
   });

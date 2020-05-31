@@ -8,6 +8,11 @@ router.get('/', async (req, res, next) => {
   // Get news articles with unique id from database
   const newsArticles = (await getNewsArticles()).val();
 
+  for (let [key, value] of Object.entries(newsArticles)) {
+    if(value.type != "pending"){
+        delete newsArticles[key];
+    }
+  }
   // Render the articles
   res.render('rate-articles', {
       title: 'Rate articles',
