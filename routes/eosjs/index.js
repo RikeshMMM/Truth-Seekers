@@ -52,6 +52,7 @@ const getUserActionHistory = async (user) => {
     }
 };
 
+// BUG: Causes time out, possibly missing await.
 const getArticleRatingTransactionHistory = async (articleId) => {
     // Get article rating history    
     const articleRatingsHistory = await getArticleRatingsHistory();
@@ -72,13 +73,29 @@ const getArticleRatingTransactionHistory = async (articleId) => {
     });
 
     return Promise.all(transactionHistory);
+}
 
+const pushTransaction = async (actionsArray) => {
+    try {
+    const result = await api.transact({
+      actions: actionsArray
+    }, {
+      blocksBehind: 3,
+      expireSeconds: 30,
+    });
+    return result;
+    } catch (e) {
+        console.log('\nCaught exception: ' + e);
+        if (e instanceof RpcError)
+        console.log(JSON.stringify(e.json, null, 2));
+    }
 }
 
 module.exports = {
     getUserAccounts,
     getArticleRatingsHistory,
     getUserActionHistory,
-    getArticleRatingTransactionHistory
+    getArticleRatingTransactionHistory,
+    pushTransaction
 }
 
