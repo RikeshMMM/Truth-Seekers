@@ -3,6 +3,8 @@ const router = express.Router();
 
 const { getNewsArticles, getNewsArticle, getNewsArticlesRef, getNewsArticlesBySource } = require('./news/index');
 
+const { getArticleRatingTransactionHistory } = require("./eosjs/index");
+
 /** GET : Browse all news articles */
 router.get('/', async (req, res, next) => {
   // Get news articles with unique id from database
@@ -31,11 +33,15 @@ router.get('/:articleID', async (req, res, next) => {
   // Remove current article from the similar articles
   delete similarArticles[articleID];
 
+  // Get article rating transaction history
+  const articleRatingTransactionHistory = await getArticleRatingTransactionHistory(newsArticle.id);
+
   // Render the article
   res.render('news-articles/read', {
     title: newsArticle.title,
     newsArticle,
-    similarArticles
+    similarArticles,
+    articleRatingTransactionHistory
   });
 })
 

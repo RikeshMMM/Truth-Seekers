@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js" integrity="sha256-5oApc/wMda1ntIEK4qoWJ4YItnV4fBHMwywunj8gPqc=" crossorigin="anonymous"></script>
 </head>
 <body class="container">
 
@@ -25,6 +26,35 @@
                     <div class="section-header mb-5">
                         <!-- Section description starts -->
                         <div class="section-description mb-3">
+                            <!-- Article rating history starts -->
+                            <div class="article-rating-history bg-ct-card-dark-active rounded shadow p-3 mb-3">
+                                <div class="header d-flex justify-content-between align-items-center">
+                                    <div class="text">
+                                        <h4 class="mb-0">News Article Review History</h4>
+                                        <h5 class="mb-0 text-ct-secondary">Powered by <a href="https://eos.io/" class="text-ct-green">EOS.IO</a></h5>
+                                    </div>
+                                    <button id="show-history" class="btn btn-ct-green">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                </div>
+                                <div class="owl-carousel owl-theme mt-3 util-hidden">
+                                    <% articleRatingTransactionHistory.forEach(function(transaction){ %>
+                                        <div class="user-rating">
+                                            <div class="user-information mb-2" style="word-wrap: break-word;">
+                                                <h4 class="mb-0 text-capitalize">User: <%= transaction.action_trace.act.data.user %></h4>
+                                                <h4 class="text-ct-secondary mb-0">Block Time: <%= transaction.block_time.substring(0,10) %> <%= transaction.block_time.substring(11,19) %></h4>
+                                                <h4 class="mb-0">Transaction ID:</h4>
+                                                <a href="" class="text-ct-green"><%= transaction.action_trace.trx_id %></a>
+                                            </div>
+                                            <div class="rating">
+                                                <h4 class="mb-0">Rating:</h4>
+                                                <h3 class="mb-0 text-ct-green"><%= transaction.action_trace.act.data.rating %>%</h3>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                            </div>
+                            <!-- Article rating history ends -->
                             <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
                                 <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
                                 <h4 class="mb-0">Trusted News Source</h4>
@@ -100,7 +130,7 @@
     <!-- Container ends -->
 </main>
 <script>
-    $('.owl-carousel').owlCarousel({
+    $('.similar-articles .owl-carousel').owlCarousel({
     loop:false,
     margin:10,
     nav:false,
@@ -112,6 +142,27 @@
             items:3
         }
     }
+    });
+
+    $('.article-rating-history .owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+    });
+
+    $('#show-history').click(function(){
+        $('.article-rating-history .owl-carousel').toggleClass("util-hidden");
     });
 </script>
 

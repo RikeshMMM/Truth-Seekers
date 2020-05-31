@@ -32,7 +32,7 @@ h5, .h5 {
 }
 
 .util-hidden {
-  display: none;
+  display: none !important;
 }
 
 .text-ct-secondary {

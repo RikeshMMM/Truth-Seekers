@@ -1,8 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+const { getArticleRatingsHistory, getArticleRatingTransactionHistory } = require("./eosjs/index");
+
+router.get('/', async (req, res, next) => {
+  const data = await getArticleRatingTransactionHistory(2);
+  res.send(data);
+});
+
 /** GET : View user profile */
-router.get('/:userID', function(req, res, next) {
+router.get('/:userID', (req, res, next) => {
   // Get user ID from request params
   const { userID } = req.params;
 
