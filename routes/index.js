@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
   const newsArticles = Object.values(newsArticlesObject);
 
   res.render('index', {
-    title: 'Covid Times',
+    title: 'Truth Seekers',
     latestArticleTop: newsArticles.slice(0,1),
     latestArticles: newsArticles.slice(1,4),
     fakeArticleTop: newsArticles.slice(4,6),
