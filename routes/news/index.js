@@ -17,6 +17,8 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+const getNewsDatabase = () => firebase.database();
+
 /**
  * Get reference to news articles
  * @returns {Reference} - Firebase database reference
@@ -28,6 +30,8 @@ const getNewsArticlesRef = () => firebase.database().ref('/articles');
  * @returns {Promise} - Database snapshot with news articles
  */
 const getNewsArticles = async () => await firebase.database().ref('/articles').once('value');
+const getSources = async () => await firebase.database().ref('/sources').once('value');
+
 
 /**
  * Get specified news articles
@@ -45,6 +49,8 @@ const getNewsArticle = async (articleID) => await firebase.database().ref(`/arti
 const getNewsArticlesBySource = async (sourceID) => await getNewsArticlesRef().orderByChild('source/id').equalTo(sourceID).once('value');
 
 module.exports = {
+  getSources,
+  getNewsDatabase,
   getNewsArticlesRef,
   getNewsArticles,
   getNewsArticle,
