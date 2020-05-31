@@ -10,6 +10,7 @@ const sourcesRouter = require('./routes/sources');
 const newsArticlesRouter = require('./routes/news-articles');
 const verifyNewsRouter = require('./routes/verify-news');
 const adminRouter = require('./routes/admin');
+const rateArticlesRouter = require('./routes/rate-articles');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/sources', sourcesRouter);
 app.use('/news-articles', newsArticlesRouter);
+app.use('/rate-articles', rateArticlesRouter);
 app.use('/verify-news', verifyNewsRouter);
 app.use('/admin', adminRouter);
 

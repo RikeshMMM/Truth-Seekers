@@ -30,11 +30,16 @@
                 <div class="verify-news-result text-center mb-3">
                     <% if(verifyNewsResult.result === "trusted") { %>
                         <i class="fas fa-shield-virus fa-9x text-ct-green mb-3"></i>
-                        <h4>Source: <%= verifyNewsResult.source.name %></h4>
+                        <% if(verifyNewsResult.url != " ") { %>
+                            <a href="<%= verifyNewsResult.url %>" class="h3 mb-2 text-ct-green d-block"> URL : <%= verifyNewsResult.url %></a>
+                        <% } %>
+                        <h3 class="mb-3">Source: <%= verifyNewsResult.source.name %></h3>
                         <h2 class="text-ct-green text-capitalize">This article is from a trusted news source!</h2>
                     <% } else if(verifyNewsResult.result === "untrusted")  { %>
                         <i class="fas fa-exclamation-triangle fa-9x text-ct-amber mb-3"></i>
-                        <h4>Source: <%= verifyNewsResult.source.name %></h4>
+                        <% if(verifyNewsResult.url != " ") { %>
+                            <a href="<%= verifyNewsResult.url %>" class="h3 mb-2 text-ct-green d-block"> URL : <%= verifyNewsResult.url %></a>
+                        <% } %>
                         <h2 class="text-ct-amber text-capitalize">This article is from a untrusted news source!</h2>
                     <% } else { %>
                         <i class="fas fa-question-circle fa-9x text-ct-secondary mb-3"></i>
@@ -73,8 +78,7 @@
                                         <% } %>
                                         <h2 class="mb-3"><a href="/news-articles/<%= key %>" class="text-decoration-none text-white"><%= value.title %></a></h2>
                                         <div class="news-metadata d-flex justify-content-between align-items-center mb-3">
-                                            <h4 class="mb-0"><a href="" class="text-decoration-none text-ct-secondary"><%= value.source.name %></a></h4>
-                                            <h4 class="text-ct-secondary mb-0"><%= value.publishedAt.substring(0,10) %></h4>
+                                        
                                         </div>
                                         <p class="mb-3"><%= value.description %></p>
                                     </div>

@@ -48,7 +48,7 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="text-search" role="tabpanel" aria-labelledby="text-search-tab">
-                        <form action="" method="post">
+                        <form action="verify-news/text" method="post">
                             <div class="form-group">
                                 <label for="news-text" class="h4">Text/News article to verify</label>
                                 <textarea class="form-control" id="news-text" name="newsText" rows="5"></textarea>
@@ -56,13 +56,14 @@
                             <button type="submit" class="btn btn-block btn-lg btn-ct-green">Submit</button>
                         </form>
                     </div>
+                    <!-- TODO: URL form validation -->
                     <div class="tab-pane fade" id="url-search" role="tabpanel" aria-labelledby="url-search-tab">
-                        <form action="" method="post">
+                        <form action="verify-news/url" method="post">
                             <div class="form-group">
                                 <label for="news-url" class="h4">URL of the article to verify</label>
                                 <input class="form-control form-control-lg" id="news-url" name="newsUrl" type="text">
                               </div>
-                            <button type="submit" class="btn btn-block btn-lg btn-ct-green">Submit</button>
+                            <button type="submit" id="URLSubmit" class="btn btn-block btn-lg btn-ct-green">Submit</button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="image-search" role="tabpanel" aria-labelledby="image-search-tab">

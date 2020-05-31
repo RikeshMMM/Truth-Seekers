@@ -1,11 +1,117 @@
 const express = require('express');
 const router = express.Router();
+const domain = require('getdomain')
+
+const { getSources, getNewsDatabase, getNewsArticles, getNewsArticle, getNewsArticlesRef, getNewsArticlesBySource } = require('./news/index');
 
 /** GET : View verify news form */
 router.get('/', function(req, res, next) {
   res.render('verify-news/verify-news-form', {
     title: "Verify News Articles"
   });
+});
+
+router.post('/url', async function(req, res, next) {
+  const { newsUrl } = req.body;
+  var trusted = false;
+  
+  const sources = (await getSources()).val();  
+  console.log(sources)
+  domains = [];
+  for (let [key, value] of Object.entries(sources)) {
+    domains.push(value.domain);
+  }
+  console.log(domains)
+  dom = domain.hostname(newsUrl);
+
+  const verifyNewsResultTrusted = {
+    result: "trusted",
+    source: { name: dom},
+    articles: {},
+    url : newsUrl
+  };
+
+  // Verify news result - Untrusted
+  const verifyNewsResultUntrusted = {
+    result: "untrusted",
+    source: { name: dom},
+    articles: {},
+    url : newsUrl
+  };
+
+  if(domains.includes(dom)){
+
+    trusted = true;
+    res.render('verify-news/verify-news-complete', {
+      title: "Verify News Articles Complete",
+      verifyNewsResult: verifyNewsResultTrusted
+    });
+
+  }
+  else{
+    res.render('verify-news/verify-news-complete', {
+      title: "Verify News Articles Complete",
+      verifyNewsResult: verifyNewsResultUntrusted
+    });
+  }
+
+  // res.render('verify-news/verify-news-form', {
+  //   title: "Verify News Articles"
+  // });
+});
+
+
+router.post('/text', async function(req, res, next) {
+  const { newsText } = req.body;
+  var trusted = false;
+  articleFound = {};
+  console.log(newsText)
+  
+  const articles = (await getNewsArticles()).val();  
+  // console.log(articles)
+
+  content = []
+  for (let [key, value] of Object.entries(articles)) {
+    if(value.content!=null){
+     content.push(value.content);
+     if(value.content.substring(0,190).includes(newsText.substring(0,100))){
+      trusted = true;
+      articleFound = value;
+     }
+  }
+  }
+
+  console.log(content)
+
+  console.log("******************")
+  console.log(articleFound)
+
+  const verifyNewsResultUnknown = {
+    result: "unknown",
+  }
+
+  if(trusted == true){
+
+    const verifyNewsResultTrusted = {
+      result: "trusted",
+      articles: {articleFound},
+      source: {name: articleFound.source.name},
+      url : " "
+    };
+
+    res.render('verify-news/verify-news-complete', {
+      title: "Verify News Articles Complete",
+      verifyNewsResult: verifyNewsResultTrusted
+    });
+
+  }
+  else{
+    res.render('verify-news/verify-news-complete', {
+      title: "Verify News Articles Complete",
+      verifyNewsResult: verifyNewsResultUnknown
+    });
+  }
+
 });
 
 /** GET : View verify news complete results */
@@ -55,7 +161,7 @@ router.get('/complete', function(req, res, next) {
 
   res.render('verify-news/verify-news-complete', {
     title: "Verify News Articles Complete",
-    verifyNewsResult: verifyNewsResultTrusted
+    verifyNewsResult: verifyNewsResultUntrusted
   });
 });
 
