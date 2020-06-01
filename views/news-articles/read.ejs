@@ -96,7 +96,7 @@
                     </div>
                     <!-- Section header ends -->
                     <!-- News article starts -->
-                    <div class="news-article mb-5 text-center w-100">
+                    <div class="news-article mb-5 w-100">
                         <div class="news-article-img h-100 mb-3">
                             <img src="<%= newsArticle.urlToImage %>" alt="<%= newsArticle.title %>" class="img-fluid rounded">
                         </div>
@@ -105,7 +105,6 @@
                             <a href="<%= newsArticle.url %>" class="btn btn-ct-amber btn-block btn-lg" target="_blank"><i class="far fa-newspaper mr-2"></i>Read Full Article</a>
                         </div>
                         <div class="news-article-options w-100 text-center">
-                            <h4>Help us fight fake news!</h4>
                             <% if (newsArticle.type == "pending" && !voted){ %>
                                 <h4> Rate the authenticity of the article using the slider below. </h4>
                                 <form action="/news-articles/article-rating" method="post">
@@ -122,9 +121,14 @@
                             <% } %>
                         </div>
 
-                        <i class="fab fa-2x fa-facebook"></i>
-                        <i class="fab fa-2x fa-twitter"></i>
-                        <i class="fab fa-2x fa-linkedin"></i>
+                        <div class="social-media d-flex flex-column align-items-center">
+                            <h4 class="mb-0 mr-2">Help us fight fake news!, spread awareness by sharing on social media:</h4>
+                            <div class="icons">
+                                <i class="fab fa-2x fa-facebook-square"></i>
+                                <i class="fab fa-2x fa-twitter-square"></i>
+                                <i class="fab fa-2x fa-linkedin"></i>
+                            </div>
+                        </div>
                     </div>
                     <!-- News article ends -->
                 </div>
@@ -146,7 +150,7 @@
                                         <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
                                         <h4 class="mb-0">Trusted News Source</h4>
                                     </div>
-                                    <h4 class="mb-2 font-weight-bold"><%= value.title %></h3>
+                                    <h4 class="mb-2 font-weight-bold"><a href="/news-articles/<%= key %>"><%= value.title %></a></h3>
                                     <h4 class="text-ct-secondary"><%= value.source.name %></h4>
                                 </div>
                             </div>

@@ -5,7 +5,7 @@ const {getNewsArticles, getUsers} = require('./news/index');
 const {getUserAccounts, getUserActionHistory, getUserAccount, getNewsArticleMeta, pushTransaction, getArticleRatingsHistory, calculateArticleScore, getArticleRatings} = require('./eosjs/index');
 
 router.get('/', async (req, res, next) => {
-    const articleRatings = await getArticleRatings(1);
+    const articleRatings = await getArticleRatings(8);
 
     const userAccounts = (await getUserAccounts()).filter(user => user.role == "judge").map(user => user.user);
     const judgeRatings = articleRatings.filter(article => userAccounts.indexOf(article.user) != -1);  

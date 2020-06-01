@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { getNewsArticles, getNewsArticle, getNewsArticlesRef, getNewsArticlesBySource } = require('./news/index');
 
-const { getArticleRatingsHistory, getArticleRatingTransactionHistory, pushTransaction, getNewsArticleMeta, getUserAccount, getArticleRatings } = require("./eosjs/index");
+const { getArticleRatingsHistory, getArticleRatingTransactionHistory, pushTransaction, getNewsArticleMeta, getUserAccount, getUserAccounts, getArticleRatings } = require("./eosjs/index");
 
 /** GET : Browse all news articles */
 router.get('/', async (req, res, next) => {
@@ -78,7 +78,7 @@ router.post('/article-rating', async (req, res, next) => {
 
   // If the rating count is equal to 10
   if(newsArticleMeta.ratingCount >= 10) {
-    const articleRatings = await getArticleRatings(1);
+    const articleRatings = await getArticleRatings(articleID);
 
     const userAccounts = (await getUserAccounts()).filter(user => user.role == "judge").map(user => user.user);
     const judgeRatings = articleRatings.filter(article => userAccounts.indexOf(article.user) != -1);  
@@ -93,6 +93,7 @@ router.post('/article-rating', async (req, res, next) => {
     const totalWeightSum = totalWeight.reduce((total,w) => total + w, 0);
 
     const totalScore = Math.round(totalRatingSum / totalWeightSum);
+    console.log(totalRatingSum, totalWeightSum, totalScore);
   
     // Update Article Rating Action
     const updateArticleRatingAction = {
@@ -110,9 +111,7 @@ router.post('/article-rating', async (req, res, next) => {
 
     // Push the transactions
     const updateResult = await pushTransaction([updateArticleRatingAction]);
-
   }
-  console.log(rateResult);
   res.redirect(`/news-articles/${article}`);
 });
 
@@ -140,14 +139,17 @@ router.get('/:articleID', async (req, res, next) => {
   // Get article rating transaction history
   const articleRatingTransactionHistory = await getArticleRatingTransactionHistory(newsArticle.id);
 
-  const articleRatingsHistory = await getArticleRatingsHistory();
-
   const articleRatings = await getArticleRatings(newsArticle.id);
   const voted = (articleRatings.filter(article => article.user == user)).length > 0 ? true : false;
+
+  const newsArticleMeta = await getNewsArticleMeta(newsArticle.id);
+  newsArticle.rating = newsArticleMeta.rating;
+  newsArticle.type = newsArticleMeta.type;
 
   // Render the article
   res.render('news-articles/read', {
     title: newsArticle.title,
+    page: 'search',
     articleID,
     newsArticle,
     similarArticles,
