@@ -36,7 +36,8 @@ router.get('/', async (req, res, next) => {
   console.log(sourceList)
   res.render('sources', {
       title: 'Trusted Source',
-      sources : sourceList
+      sources : sourceList,
+      page : "sources"
     });
 });
 
