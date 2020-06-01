@@ -31,6 +31,10 @@ h5, .h5 {
   font-weight: 400;
 }
 
+input[type=range] {
+  width: 70%;
+}
+
 .util-hidden {
   display: none;
 }
@@ -230,6 +234,9 @@ a:hover {
   color: white;
 }
 
+.ct-yellow{
+  color: #FB8C00;
+}
 @media (max-width: 1024px) {
   .source-information-active > .source-information {
     flex-direction: column;

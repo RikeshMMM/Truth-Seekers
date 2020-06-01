@@ -26,10 +26,35 @@
                         <!-- Section description starts -->
                         <div class="section-description mb-3">
                             <%if (newsArticle.type == "trusted"){ %>
-                            <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
-                                <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
-                                <h4 class="mb-0">Trusted News Source</h4>
+                            <div class="trusted-news-icon justify-content-between news-icon d-flex align-items-center mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
+                                    <h4 class="mb-0">Trusted News Source</h4>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                <i class="fas fa-star ct-yellow mr-3"></i>
+                                <h3 class="mb-0"> <%= newsArticle.rating %>%</h3>
+                                
                             </div>
+                            </div>
+                            <% }else if(newsArticle.type == "untrusted" ){ %>
+                                <div class="untrusted-news-icon justify-content-between news-icon d-flex align-items-center mb-3">
+                                   
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-2"></i>
+                                    <h4 class="mb-0">Untrusted News Source</h4>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                    <i class="fas mr-3 fa-star ct-yellow"></i>
+                                    <h3 class="mb-0"> <%= newsArticle.rating %>% </h3>
+                                    
+                                </div>
+                                </div> 
+                            <% }else if(newsArticle.type == "pending" ){ %>
+                                <div class="untrusted-news-icon news-icon d-flex align-items-center mb-3">
+                                    <i class="fas fa-edit fa-lg text-ct-red mr-2"></i>
+                                    <h4 class="mb-0">Verification Pending</h4>
+                                </div> 
                             <% } %>
                             <h1 class="mb-3"><%= newsArticle.title %></h1>
                             <div class="news-metadata d-flex justify-content-between align-items-center mb-3">
@@ -47,17 +72,16 @@
                         </div>
                         <div class="news-article-desc mb-3">
                             <p><%= newsArticle.description %></p>
-                            <input type="text" id="articleID" hidden><%= articleID %></p>
                             <a href="<%= newsArticle.url %>" class="btn btn-ct-amber btn-block btn-lg" target="_blank"><i class="far fa-newspaper mr-2"></i>Read Full Article</a>
                         </div>
-                        <div class="news-article-options w-100 text-center>
+                        <div class="news-article-options w-100 text-center">
                             <h4>Help us fight fake news!</h4>
-                            <%if (newsArticle.type == "pending"){ %>
+                            <% if (newsArticle.type == "pending"){ %>
                                 <h4> Rate the authenticity of the article using the slider below. </h4>
                                 <form action="/news-articles/article-rating" method="post">
                                 <input type="hidden" name="articleID" value="<%= articleID %>">
-                                <div class="form-group">
-                                <input class="mb-3"  type="range" min="0" name="rating" max="100"  step="1" value="50">
+                                <div class="form-group w-70 ">
+                                <input class="mb-3 w-70"  type="range" min="0" name="rating" max="100"  step="1" value="50">
                                 <div class="w-100 text-center">
                                     <output class="mt-2">50</output><span style="font-size: 15px;">%</span>
                                 </div>

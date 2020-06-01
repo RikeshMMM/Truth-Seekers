@@ -50,6 +50,8 @@ const getNewsArticle = async (articleID) => await firebase.database().ref(`/arti
 // TODO: Make index on source/id for better performance
 const getNewsArticlesBySource = async (sourceID) => await getNewsArticlesRef().orderByChild('source/id').equalTo(sourceID).once('value');
 
+const getNewsArticlesBySourceName = async (sourceName) => await getNewsArticlesRef().orderByChild('source/name').equalTo(sourceName).once('value');
+
 module.exports = {
   getUsers,
   getSources,
@@ -57,5 +59,6 @@ module.exports = {
   getNewsArticlesRef,
   getNewsArticles,
   getNewsArticle,
-  getNewsArticlesBySource
+  getNewsArticlesBySource,
+  getNewsArticlesBySourceName
 }

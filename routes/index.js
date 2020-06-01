@@ -13,12 +13,25 @@ router.get('/', async (req, res, next) => {
   // Get news articles as array
   const newsArticles = Object.values(newsArticlesObject);
 
+  trustedArticles = []
+  untrustedArticles = []
+
+  for (let [key, value] of Object.entries(newsArticles)) {
+
+    if(value.type=="trusted"){
+      trustedArticles.push(value)
+    }else if(value.type == "untrusted"){
+      untrustedArticles.push(value)
+    }
+ 
+  }
+
   res.render('index', {
     title: 'Truth Seekers',
-    latestArticleTop: newsArticles.slice(0,1),
-    latestArticles: newsArticles.slice(1,4),
-    fakeArticleTop: newsArticles.slice(4,6),
-    fakeArticles: newsArticles.slice(5,8),
+    trustedArticleTop: trustedArticles.slice(0,1),
+    trustedArticles: trustedArticles.slice(1,4),
+    fakeArticleTop:  untrustedArticles.slice(0,1),
+    fakeArticles:  untrustedArticles.slice(1,4),
   });
 });
 

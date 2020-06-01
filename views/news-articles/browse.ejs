@@ -31,9 +31,14 @@
                     </div>
                     <!-- Trusted news icon ends -->
                     <!-- Un-Trusted news icon starts -->
-                    <div class="un-trusted-news-icon news-icon d-flex align-items-center">
+                    <div class="un-trusted-news-icon news-icon d-flex align-items-center mr-3">
                         <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-3"></i>
                         <h4 class="mb-0">Un-Trusted News Source</h4>
+                    </div>
+
+                    <div class="pending-news-icon news-icon d-flex align-items-center">
+                        <i class="fas fa-edit fa-lg text-ct-red mr-3"></i>
+                        <h4 class="mb-0">Verification Pending</h4>
                     </div>
                     <!-- Un-Trusted news icon ends -->
                 </div>
@@ -69,10 +74,35 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="news-article-desc p-3">
-                                        <div class="trusted-news-icon news-icon d-flex align-items-center mb-3">
-                                            <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
-                                            <h4 class="mb-0">Trusted News Source</h4>
-                                        </div>
+                                        <%if (value.type == "trusted"){ %>
+                                            <div class="trusted-news-icon news-icon d-flex justify-content-between align-items-center mb-3">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
+                                                    <h4 class="mb-0">Trusted News Source</h4>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                <i class="fas fa-star ct-yellow mr-2"></i>
+                                                <h4 class="mb-0"> <%= value.rating %>%</h4>
+                                                </div>
+                                            </div>
+                                            <% }else if(value.type == "untrusted" ){ %>
+                                                <div class="untrusted-news-icon news-icon justify-content-between d-flex align-items-center mb-3">
+                                            
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-2"></i>
+                                                        <h4 class="mb-0">Untrusted News Source</h4>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                    <i class="fas fa-star ct-yellow mr-2"></i>
+                                                    <h4 class="mb-0"> <%= value.rating %>%</h4>
+                                                    </div>
+                                                </div> 
+                                            <% }else { %>
+                                                <div class="untrusted-news-icon news-icon d-flex align-items-center mb-3">
+                                                    <i class="fas fa-edit fa-lg text-ct-red mr-2"></i>
+                                                    <h4 class="mb-0">Verification Pending</h4>
+                                                </div> 
+                                            <% } %>
                                         <h2 class="mb-3"><a href="/news-articles/<%= key %>" class="text-decoration-none text-white"><%= value.title %></a></h2>
                                         <div class="news-metadata d-flex justify-content-between align-items-center mb-3">
                                             <h4 class="mb-0"><a href="" class="text-decoration-none text-ct-secondary"><%= value.source.name %></a></h4>
