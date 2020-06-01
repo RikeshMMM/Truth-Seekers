@@ -2,7 +2,7 @@
 
 ## Official repository for Truth Seekers web application with EOSIO blockchain
 
-## Proposal for EOSIO Virtual Hackathon: Coding for Change
+## Proposal for EOSIO Virtual Hackathon: Coding for Change [(View Here)](https://devpost.com/software/truth-seekers)
 
 ## About Truth Seekers
 Curb the spread of fake news, ensuring only reliable articles from trusted sources are promoted with the help of validation experts and by providing a community-driven platform.
