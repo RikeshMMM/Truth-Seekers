@@ -138,6 +138,7 @@ router.get('/:articleID', async (req, res, next) => {
 
   // Get article rating transaction history
   const articleRatingTransactionHistory = await getArticleRatingTransactionHistory(newsArticle.id);
+  console.log(articleRatingTransactionHistory[1].action_trace);
 
   const articleRatings = await getArticleRatings(newsArticle.id);
   const voted = (articleRatings.filter(article => article.user == user)).length > 0 ? true : false;

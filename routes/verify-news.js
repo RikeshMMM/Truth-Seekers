@@ -112,7 +112,8 @@ router.post('/text', async function(req, res, next) {
   else{
     res.render('verify-news/verify-news-complete', {
       title: "Verify News Articles Complete",
-      verifyNewsResult: verifyNewsResultUnknown
+      verifyNewsResult: verifyNewsResultUnknown,
+      page : "verify"
     });
   }
 
@@ -165,7 +166,8 @@ router.get('/complete', function(req, res, next) {
 
   res.render('verify-news/verify-news-complete', {
     title: "Verify News Articles Complete",
-    verifyNewsResult: verifyNewsResultUntrusted
+    verifyNewsResult: verifyNewsResultUntrusted,
+    page : "verify"
   });
 });
 

@@ -104,9 +104,9 @@ const getArticleRatingTransactionHistory = async (articleId) => {
 
         // Get action history of the user
         const userActionHistory = await (await getUserActionHistory(user)).actions;
-        
+
         // Get the action for the rateArticle action
-        const rateArticleAction = await userActionHistory.find(action => action.action_trace.act.name === "ratearticle" && action.action_trace.act.data.article_id === articleId);
+        const rateArticleAction = userActionHistory.filter(action => action.action_trace.act.name == "ratearticle").find(action =>action.action_trace.act.data.article_id == articleId);
 
         return rateArticleAction; 
     });
