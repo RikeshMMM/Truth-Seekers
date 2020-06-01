@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { getNewsArticles, getNewsArticle, getNewsArticlesRef, getNewsArticlesBySource } = require('./news/index');
 
-const { getArticleRatingsHistory, getArticleRatingTransactionHistory, pushTransaction, getNewsArticleMeta, getUserAccount } = require("./eosjs/index");
+const { getArticleRatingsHistory, getArticleRatingTransactionHistory, pushTransaction, getNewsArticleMeta, getUserAccount, getArticleRatings } = require("./eosjs/index");
 
 /** GET : Browse all news articles */
 router.get('/', async (req, res, next) => {
@@ -53,7 +53,7 @@ router.post('/article-rating', async (req, res, next) => {
   actions.push(rateArticleAction);
   
   // If the user is a judge
-  if(userAccount.role = "judge") {
+  if(userAccount.role == "judge") {
     // Increment article rating count action
     const incrementCountAction = {
       account: 'covidtimes',
@@ -66,7 +66,7 @@ router.post('/article-rating', async (req, res, next) => {
           article_id: articleID
       },
     };
-    actions.push(rateArticleAction);
+    actions.push(incrementCountAction);
   }
 
   // Push the transactions
@@ -120,6 +120,11 @@ router.get('/:articleID', async (req, res, next) => {
   // Get article ID from request params
   const { articleID } = req.params;
 
+  const { userData } = req.cookies;
+
+  // Replace '_' from username
+  const user = userData.username.replace('_','');
+
   // Get news article from database
   const newsArticle = (await getNewsArticle(articleID)).val();
 
@@ -134,13 +139,19 @@ router.get('/:articleID', async (req, res, next) => {
   // Get article rating transaction history
   const articleRatingTransactionHistory = await getArticleRatingTransactionHistory(newsArticle.id);
 
+  const articleRatingsHistory = await getArticleRatingsHistory();
+
+  const articleRatings = await getArticleRatings(newsArticle.id);
+  const voted = (articleRatings.filter(article => article.user == user)).length > 0 ? true : false;
+
   // Render the article
   res.render('news-articles/read', {
     title: newsArticle.title,
-    articleID : articleID,
+    articleID,
     newsArticle,
     similarArticles,
     articleRatingTransactionHistory,
+    voted
   });
 })
 

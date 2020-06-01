@@ -102,18 +102,18 @@
                         </div>
                         <div class="news-article-desc mb-3">
                             <p><%= newsArticle.description %></p>
-                            <a href="<%= newsArticle.url %>" class="btn btn-ct-green btn-block btn-lg" target="_blank"><i class="far fa-newspaper mr-2"></i>Read Full Article</a>
+                            <a href="<%= newsArticle.url %>" class="btn btn-ct-amber btn-block btn-lg" target="_blank"><i class="far fa-newspaper mr-2"></i>Read Full Article</a>
                         </div>
                         <div class="news-article-options w-100 text-center">
                             <h4>Help us fight fake news!</h4>
-                            <% if (newsArticle.type == "pending"){ %>
+                            <% if (newsArticle.type == "pending" && !voted){ %>
                                 <h4> Rate the authenticity of the article using the slider below. </h4>
                                 <form action="/news-articles/article-rating" method="post">
                                 <input type="hidden" name="articleID" value="<%= newsArticle.id %>">
                                 <input type="hidden" name="article" value="<%= articleID %>">
                                 <div class="form-group">
                                 <input class="mb-3"  type="range" min="0" name="rating" max="100"  step="1" value="50">
-                                <div class="w-100 text-center">
+                                <div class="w-100 text-center mt-2">
                                     <output class="mt-2">50</output><span style="font-size: 15px;">%</span>
                                 </div>
                                 <button class="btn mt-2 btn-block btn-ct-green btn-lg mb-2"><i class="far fa-thumbs-up mr-2"></i>Submit Review</button>

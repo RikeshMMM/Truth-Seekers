@@ -37,33 +37,41 @@
 
                                 <li class="source list-group-item source-information-active bg-ct-card-dark-active shadow mb-3">
                                     <!-- Source information starts -->
-                                    <div class="source-information d-flex align-items-center justify-content-between">
-                                        <!-- Source rank starts -->
-                                        <div class="source-rank">
-                                            <h4 class="mb-0"><%= i+1 %></h4>
-                                        </div>
-                                        <!-- Source rank ends -->
-                                        <!-- Source image starts -->
-                                        <div class="source-image">
-                                            <img src="<%= value.logo %>" alt="<%= value.name %>" class="img-fluid">
-                                        </div>
-                                        <!-- Source image ends -->
-                                        <!-- Source description starts -->
-                                        <div class="source-description">
-                                            <div class="source-header">
-                                                <h4 class="mb-0 source-name"><%= value.name %></h4>
-                                                <div class="source-trust-rate">
-                                                    <h4 class="rating mb-0 text-ct-green"><%= value.rating %> % </h4>
-                                                    <h4 class="rating-label mb-0 util-hidden">User Rating</h4>
+                                    <div class="source-information">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <!-- Source rank starts -->
+                                                <div class="source-rank">
+                                                    <h4 class="mb-0"><%= i+1 %></h4>
                                                 </div>
+                                                <!-- Source rank ends -->
                                             </div>
-                                            <!-- Source body starts -->
-                                            <div class="source-body util-hidden">
-                                                <p class="mb-0"><%= value.name %> is a daily English language newspaper published from Dubai, United Arab Emirates. It was first launched in 1978, and is currently distributed throughout the UAE and also in other Persian Gulf Countries. Its online edition was launched in 1996 </p>
+                                            <div class="col-sm-4">
+                                                <!-- Source image starts -->
+                                                <div class="source-image" style="">
+                                                    <img src="<%= value.logo %>" alt="<%= value.name %>" class="img-fluid">
+                                                </div>
+                                                <!-- Source image ends -->
                                             </div>
-                                            <!-- Source body ends -->
+                                            <div class="col-sm-4">
+                                                <!-- Source description starts -->
+                                                <div class="source-description">
+                                                    <div class="source-header">
+                                                        <h4 class="mb-0 source-name"><%= value.name %></h4>
+                                                        <div class="source-trust-rate">
+                                                            <h4 class="rating mb-0 text-ct-green"><%= value.rating %> % </h4>
+                                                            <h4 class="rating-label mb-0 util-hidden">User Rating</h4>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Source body starts -->
+                                                    <div class="source-body util-hidden">
+                                                        <p class="mb-0"><%= value.name %> is a daily English language newspaper published from Dubai, United Arab Emirates. It was first launched in 1978, and is currently distributed throughout the UAE and also in other Persian Gulf Countries. Its online edition was launched in 1996 </p>
+                                                    </div>
+                                                    <!-- Source body ends -->
+                                                </div>
+                                                <!-- Source description ends -->
+                                            </div>
                                         </div>
-                                        <!-- Source description ends -->
                                     </div>
                                     <!-- Source information ends -->
                                 </li>
