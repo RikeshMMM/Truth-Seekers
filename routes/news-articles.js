@@ -13,6 +13,7 @@ router.get('/', async (req, res, next) => {
   // Render the articles
   res.render('news-articles/browse', {
       title: 'News articles',
+      page: 'search',
       newsArticles
     });
 });

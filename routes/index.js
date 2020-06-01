@@ -17,6 +17,8 @@ router.get('/', async (req, res, next) => {
 
   for (let [key, value] of Object.entries(newsArticles)) {
 
+    value.key = key;
+    
     if(value.type=="trusted"){
       trustedArticles.push(value)
     }else if(value.type == "untrusted"){
@@ -25,12 +27,16 @@ router.get('/', async (req, res, next) => {
  
   }
 
+  const user = req.cookies.userData.info.name;
+
   res.render('index', {
     title: 'Truth Seekers',
     trustedArticleTop: trustedArticles.slice(0,1),
     trustedArticles: trustedArticles.slice(1,4),
     fakeArticleTop:  untrustedArticles.slice(0,1),
     fakeArticles:  untrustedArticles.slice(1,4),
+    page : "home",
+    user
   });
 });
 

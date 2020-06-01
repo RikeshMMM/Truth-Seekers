@@ -20,6 +20,7 @@ router.get('/:userID', (req, res, next) => {
 
   res.render('users/read', {
     title: "User Profile",
+    page : "profile",
     user
   });
 });

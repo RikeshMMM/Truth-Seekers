@@ -16,7 +16,8 @@ router.get('/', async (req, res, next) => {
   // Render the articles
   res.render('rate-articles', {
       title: 'Rate articles',
-      newsArticles
+      newsArticles,
+      page : "rate"
     });
 });
 
