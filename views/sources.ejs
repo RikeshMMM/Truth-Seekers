@@ -33,31 +33,33 @@
                             <!-- Sources starts -->
                             <ul class="sources list-group">
                                 <!-- Source starts -->
+                    <% sources.forEach(function (value, i) { %>
+
                                 <li class="source list-group-item source-information-active bg-ct-card-dark-active shadow mb-3">
                                     <!-- Source information starts -->
                                     <div class="source-information d-flex align-items-center justify-content-between">
                                         <!-- Source rank starts -->
                                         <div class="source-rank">
-                                            <h4 class="mb-0">1</h4>
+                                            <h4 class="mb-0"><%= i+1 %></h4>
                                         </div>
                                         <!-- Source rank ends -->
                                         <!-- Source image starts -->
                                         <div class="source-image">
-                                            <img src="https://www.yellowdoorenergy.com/wp-content/uploads/2020/02/Gulf-News-Media-Interview-Logo.png" alt="Gulf News" class="img-fluid">
+                                            <img src="<%= value.logo %>" alt="<%= value.name %>" class="img-fluid">
                                         </div>
                                         <!-- Source image ends -->
                                         <!-- Source description starts -->
                                         <div class="source-description">
                                             <div class="source-header">
-                                                <h4 class="mb-0 source-name">Gulf News</h4>
+                                                <h4 class="mb-0 source-name"><%= value.name %></h4>
                                                 <div class="source-trust-rate">
-                                                    <h4 class="rating mb-0 text-ct-green">97.5%</h4>
+                                                    <h4 class="rating mb-0 text-ct-green"><%= value.rating %> % </h4>
                                                     <h4 class="rating-label mb-0 util-hidden">User Rating</h4>
                                                 </div>
                                             </div>
                                             <!-- Source body starts -->
                                             <div class="source-body util-hidden">
-                                                <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore dolorum, eos totam eaque ullam ab deserunt mollitia reprehenderit magni molestias, asperiores fuga laboriosam unde numquam perspiciatis qui sunt harum natus.</p>
+                                                <p class="mb-0"><%= value.name %> is a daily English language newspaper published from Dubai, United Arab Emirates. It was first launched in 1978, and is currently distributed throughout the UAE and also in other Persian Gulf Countries. Its online edition was launched in 1996 </p>
                                             </div>
                                             <!-- Source body ends -->
                                         </div>
@@ -65,103 +67,9 @@
                                     </div>
                                     <!-- Source information ends -->
                                 </li>
-                                <!-- Source ends -->
-                                <!-- Source starts -->
-                                <li class="source list-group-item bg-ct-card-dark shadow mb-3">
-                                    <!-- Source information starts -->
-                                    <div class="source-information d-flex align-items-center justify-content-between">
-                                        <!-- Source rank starts -->
-                                        <div class="source-rank">
-                                            <h4 class="mb-0">2</h4>
-                                        </div>
-                                        <!-- Source rank ends -->
-                                        <!-- Source image starts -->
-                                        <div class="source-image">
-                                            <img src="https://www.yellowdoorenergy.com/wp-content/uploads/2020/02/Gulf-News-Media-Interview-Logo.png" alt="Gulf News" class="img-fluid">
-                                        </div>
-                                        <!-- Source image ends -->
-                                        <!-- Source description starts -->
-                                        <div class="source-description">
-                                            <h4 class="mb-0 " id="source-name">Gulf News</h4>
-                                            <h4 class="mb-0 text-ct-green" id="source-trust-rate">97.5%</h4>
-                                        </div>
-                                        <!-- Source description ends -->
-                                    </div>
-                                    <!-- Source information ends -->
-                                </li>
-                                <!-- Source ends -->
-                                <!-- Source starts -->
-                                <li class="source list-group-item bg-ct-card-dark shadow mb-3">
-                                    <!-- Source information starts -->
-                                    <div class="source-information d-flex align-items-center justify-content-between">
-                                        <!-- Source rank starts -->
-                                        <div class="source-rank">
-                                            <h4 class="mb-0">3</h4>
-                                        </div>
-                                        <!-- Source rank ends -->
-                                        <!-- Source image starts -->
-                                        <div class="source-image">
-                                            <img src="https://www.yellowdoorenergy.com/wp-content/uploads/2020/02/Gulf-News-Media-Interview-Logo.png" alt="Gulf News" class="img-fluid">
-                                        </div>
-                                        <!-- Source image ends -->
-                                        <!-- Source description starts -->
-                                        <div class="source-description">
-                                            <h4 class="mb-0 " id="source-name">Gulf News</h4>
-                                            <h4 class="mb-0 text-ct-green" id="source-trust-rate">97.5%</h4>
-                                        </div>
-                                        <!-- Source description ends -->
-                                    </div>
-                                    <!-- Source information ends -->
-                                </li>
-                                <!-- Source ends -->
-                                <!-- Source starts -->
-                                <li class="source list-group-item bg-ct-card-dark shadow mb-3">
-                                    <!-- Source information starts -->
-                                    <div class="source-information d-flex align-items-center justify-content-between">
-                                        <!-- Source rank starts -->
-                                        <div class="source-rank">
-                                            <h4 class="mb-0">4</h4>
-                                        </div>
-                                        <!-- Source rank ends -->
-                                        <!-- Source image starts -->
-                                        <div class="source-image">
-                                            <img src="https://www.yellowdoorenergy.com/wp-content/uploads/2020/02/Gulf-News-Media-Interview-Logo.png" alt="Gulf News" class="img-fluid">
-                                        </div>
-                                        <!-- Source image ends -->
-                                        <!-- Source description starts -->
-                                        <div class="source-description">
-                                            <h4 class="mb-0 " id="source-name">Gulf News</h4>
-                                            <h4 class="mb-0 text-ct-green" id="source-trust-rate">97.5%</h4>
-                                        </div>
-                                        <!-- Source description ends -->
-                                    </div>
-                                    <!-- Source information ends -->
-                                </li>
-                                <!-- Source ends -->
-                                <!-- Source starts -->
-                                <li class="source list-group-item bg-ct-card-dark shadow mb-3">
-                                    <!-- Source information starts -->
-                                    <div class="source-information d-flex align-items-center justify-content-between">
-                                        <!-- Source rank starts -->
-                                        <div class="source-rank">
-                                            <h4 class="mb-0">5</h4>
-                                        </div>
-                                        <!-- Source rank ends -->
-                                        <!-- Source image starts -->
-                                        <div class="source-image">
-                                            <img src="https://www.yellowdoorenergy.com/wp-content/uploads/2020/02/Gulf-News-Media-Interview-Logo.png" alt="Gulf News" class="img-fluid">
-                                        </div>
-                                        <!-- Source image ends -->
-                                        <!-- Source description starts -->
-                                        <div class="source-description">
-                                            <h4 class="mb-0 " id="source-name">Gulf News</h4>
-                                            <h4 class="mb-0 text-ct-green" id="source-trust-rate">97.5%</h4>
-                                        </div>
-                                        <!-- Source description ends -->
-                                    </div>
-                                    <!-- Source information ends -->
-                                </li>
-                                <!-- Source ends -->
+
+                                <% }) %>
+                                
                             </ul>
                             <!-- Sources ends -->
                         </div>
@@ -174,7 +82,7 @@
                             <div class="source-information bg-ct-card-dark-active rounded shadow">
                                 <!-- Source image starts -->
                                 <div class="source-image text-center">
-                                    <img src="https://www.yellowdoorenergy.com/wp-content/uploads/2020/02/Gulf-News-Media-Interview-Logo.png" alt="Gulf News" class="img-fluid">
+                                    <img src="<%= sources[0].logo %>" alt="<%= sources[0].name %>" class="img-fluid">
                                 </div>
                                 <!-- Source image ends -->
                                 <!-- Source description starts -->
@@ -183,12 +91,12 @@
                                     <div class="source-header d-flex align-items-center justify-content-between mb-5">
                                         <!-- Source name starts -->
                                         <div class="source-name">
-                                            <h2 class="mb-0">Gulf News</h2>
+                                            <h2 class="mb-0"><%= sources[0].name %></h2>
                                         </div>
                                         <!-- Source name ends -->
                                         <!-- Source trust rate starts -->
                                         <div class="source-trust-rate text-center">
-                                            <h2 class="mb-0 text-ct-green">97.5%</h2>
+                                            <h2 class="mb-0 text-ct-green"><%= sources[0].rating %></h2>
                                             <h4 class="mb-0">User Rating</h4>
                                         </div>
                                         <!-- Source trust rate end -->
@@ -196,7 +104,7 @@
                                     <!-- Source header ends -->
                                     <!-- Source body starts -->
                                     <div class="source-body">
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit voluptatibus suscipit sed magnam provident a molestias officia sapiente eum aperiam, voluptas eos hic repellat tempore totam? Accusamus iste laboriosam veniam?</p>
+                                        <p><%= sources[0].name %> is a daily English language newspaper published from Delhi, India. It was first launched in 1978, and is currently distributed throughout the India. Its online edition was launched in 1996. Lorem Ipsum bleh bleh hahah.</p>
                                     </div>
                                     <!-- Source body ends -->
                                 </div>

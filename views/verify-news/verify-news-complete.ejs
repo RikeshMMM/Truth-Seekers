@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <% include ../partials/head %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
 </head>
 <body class="container">
 
@@ -99,7 +103,66 @@
                     <% } %>
                 </div>
                 <!-- Verified articles ends -->
-                <button class="btn btn-lg btn-block btn-ct-green">Learn About Our Verification Process</button>
+                <button type="button" class="btn btn-lg btn-block btn-ct-green" data-toggle="modal" data-target="#helpModel">Learn About Our Verification Process</button>
+
+                <div class="modal fade" id="helpModel" tabindex="-1" role="dialog" aria-labelledby="helpModelLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content bg-ct-card-dark">
+                        <div class="modal-body">
+                          <div class="owl-carousel owl-theme">
+                            <div class="help-guide px-3 pt-3">
+                                <div class="d-flex flex-column justify-content-between align-items-center">
+                                    <div>
+                                        <img src="/images/network_.png" alt="Family" class="img-fluid mb-3" style="height: 250px; width: auto;">
+                                    </div>
+                                    <h4 class="font-weight-bold  mb-3">Eco-Watt, Your Companion</h4>
+                                    <p class="text-white">Welcome to EcoWatt, a smart-home control app that aims to help you better yourself by making more sustainable choices, helping the environment and reducing your energy spending!</p>
+                                </div>
+                            </div>
+                              <div class="help-guide px-3 pt-3">
+                                <div class="d-flex flex-column justify-content-between align-items-center">
+                                <div class="">
+                                  <img src="/images/diversity_.png" alt="Family" class="img-fluid mb-3" style="height: 250px; width: auto;">
+                                </div>
+                                <h4 class="font-weight-bold  mb-3">Add your household</h4>
+                                <p class="text-white">A smart home doesn’t only contain devices, the most important element is you, the household! In Eco-Watt you can add unique user profiles with their permissions and preferences, keeping the app personal to everyone!</p>
+                                </div>
+                              </div>
+                              <div class="help-guide px-3 pt-3">
+                                <div class="d-flex flex-column justify-content-between align-items-center">
+                                <div class="">
+                                <img src="/images/quality_check.png" alt="Family" class="img-fluid mb-3" style="height: 250px; width: auto;">
+                                </div>
+                                <h4 class="font-weight-bold mb-3">Add rooms and group devices</h4>
+                                <p class="text-white">To assist you in keeping your devices organised, in EcoWatt you can group devices together, based on what room they are in, letting you find your devices as easily as possible.</p>
+                                </div>
+                            </div>
+                            <div class="help-guide px-3 pt-3">
+                                <div class="d-flex flex-column justify-content-between align-items-center">
+                                <div class="">
+                                <img src="/images/team_meeting_.png" alt="Family" class="img-fluid mb-3" style="height: 250px; width: auto;">
+                                </div>
+                                <h4 class="font-weight-bold text-ecogreen mb-3">Add routines to automate devices</h4>
+                                <p class="text-white">Control your devices on a regular basis? Create a routine! Routines allow you to rid yourself of mundane tasks, by letting EcoWatt take care of them for you. They exist to automate devices, allowing you to focus on your day-to-day life, instead of your devices.</p>
+                                </div>
+                            </div>
+                            <div class="help-guide px-3 pt-3">
+                                <div class="d-flex flex-column justify-content-between align-items-center">
+                                <div class="">
+                                <img src="/images/team_work.png" alt="Family" class="img-fluid mb-3" style="height: 250px; width: auto;">
+                                </div>
+                                <h4 class="font-weight-bold mb-3">Energy Score</h4>
+                                <p class="text-white">The Energy Score provides information about where the house stands in terms of energy efficiency compared to all other houses and encourages all users to use energy vigilantly.</p>
+                                </div>
+                            </div>
+                            
+                          </div>
+                          <button type="button" class="btn btn-block" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
             </div>
             <!-- Verify news result section ends -->
         </div>
@@ -107,7 +170,21 @@
     </div>
     <!-- Container ends -->
 </main>
-
+<script>
+    $('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        }
+    }
+    });
+</script>
 <footer>
     <% include ../partials/footer %>
 </footer>

@@ -21,13 +21,24 @@
                 <div class="user-profile d-flex flex-column align-items-center">
                     <!-- User image starts -->
                     <div class="user-image mb-3">
-                        <img src="<%= user.profilePicture %>" alt="<%= user.name %>" class="img-fluid rounded-circle">
+                        <img src="https://images.unsplash.com/photo-1590767950092-42b8362368da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="<%= user.name %>" class="img-fluid rounded-circle">
                     </div>
                     <!-- User image ends -->
                     <!-- User details starts -->
                     <div class="user-details text-center">
                         <h2 class="mb-0"><%= user.name %></h2>
-                        <h4 class="mb-0 text-ct-secondary"><%= user.role %></h4>
+                        <%if ( user.jury == true ){ %>
+                        <h4 class="mb-0 text-ct-secondary">Validator</h4>
+                        <%}else { %>
+                        <h4 class="mb-0 text-ct-secondary">Reader</h4>
+                        <% } %>
+                        <div class="badges d-flex flex-column align-items-center ">
+
+                        <div class="badges-section d-flex ">
+                            <img src="/images/medal-1.png" class="ct-badge m-2">
+                            <img src="/images/rating-9.png" class="ct-badge m-2">
+                        </div>
+                        </div>
                     </div>
                     <!-- User details ends -->
                 </div>

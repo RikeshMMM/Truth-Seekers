@@ -55,10 +55,37 @@
                                 </div>
                             </div>
                             <!-- Article rating history ends -->
-                            <div class="pending-news-icon news-icon d-flex align-items-center mb-3">
-                                <i class="fas fa-question-circle fa-lg text-ct-secondary mr-2"></i>
-                                <h4 class="mb-0">Verification Pending</h4>
+                            <%if (newsArticle.type == "trusted"){ %>
+                            <div class="trusted-news-icon justify-content-between news-icon d-flex align-items-center mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
+                                    <h4 class="mb-0">Trusted News Source</h4>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                <i class="fas fa-star ct-yellow mr-3"></i>
+                                <h3 class="mb-0"> <%= newsArticle.rating %>%</h3>
+                                
                             </div>
+                            </div>
+                            <% }else if(newsArticle.type == "untrusted" ){ %>
+                                <div class="untrusted-news-icon justify-content-between news-icon d-flex align-items-center mb-3">
+                                   
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-2"></i>
+                                    <h4 class="mb-0">Untrusted News Source</h4>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                    <i class="fas mr-3 fa-star ct-yellow"></i>
+                                    <h3 class="mb-0"> <%= newsArticle.rating %>% </h3>
+                                    
+                                </div>
+                                </div> 
+                            <% }else if(newsArticle.type == "pending" ){ %>
+                                <div class="untrusted-news-icon news-icon d-flex align-items-center mb-3">
+                                    <i class="fas fa-edit fa-lg text-ct-red mr-2"></i>
+                                    <h4 class="mb-0">Verification Pending</h4>
+                                </div> 
+                            <% } %>
                             <h1 class="mb-3"><%= newsArticle.title %></h1>
                             <div class="news-metadata d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="mb-0"><a href="" class="text-decoration-none text-ct-secondary"><%= newsArticle.source.name %></a></h4>
@@ -69,7 +96,7 @@
                     </div>
                     <!-- Section header ends -->
                     <!-- News article starts -->
-                    <div class="news-article mb-5">
+                    <div class="news-article mb-5 text-center w-100">
                         <div class="news-article-img h-100 mb-3">
                             <img src="<%= newsArticle.urlToImage %>" alt="<%= newsArticle.title %>" class="img-fluid rounded">
                         </div>
@@ -77,9 +104,9 @@
                             <p><%= newsArticle.description %></p>
                             <a href="<%= newsArticle.url %>" class="btn btn-ct-green btn-block btn-lg" target="_blank"><i class="far fa-newspaper mr-2"></i>Read Full Article</a>
                         </div>
-                        <div class="news-article-options">
+                        <div class="news-article-options w-100 text-center">
                             <h4>Help us fight fake news!</h4>
-                            <%if (newsArticle.type == "pending"){ %>
+                            <% if (newsArticle.type == "pending"){ %>
                                 <h4> Rate the authenticity of the article using the slider below. </h4>
                                 <form action="/news-articles/article-rating" method="post">
                                 <input type="hidden" name="articleID" value="<%= newsArticle.id %>">
@@ -89,22 +116,15 @@
                                 <div class="w-100 text-center">
                                     <output class="mt-2">50</output><span style="font-size: 15px;">%</span>
                                 </div>
-                                <button type="submit" class="btn btn-block btn-ct-green btn-lg mb-2">Submit</button>
+                                <button class="btn mt-2 btn-block btn-ct-green btn-lg mb-2"><i class="far fa-thumbs-up mr-2"></i>Submit Review</button>
                                 </div>
                             </form>
                             <% } %>
-                            <div class="options">
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <button class="btn btn-block btn-ct-green btn-lg mb-2"><i class="far fa-thumbs-up mr-2"></i>This Article Was Helpful</button>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <button class="btn btn-block btn-ct-amber btn-lg mb-2 "><i class="far fa-thumbs-down mr-2"></i>This Article Was Not Helpful</button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+
+                        <i class="fab fa-2x fa-facebook"></i>
+                        <i class="fab fa-2x fa-twitter"></i>
+                        <i class="fab fa-2x fa-linkedin"></i>
                     </div>
                     <!-- News article ends -->
                 </div>
