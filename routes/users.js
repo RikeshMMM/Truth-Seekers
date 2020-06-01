@@ -13,6 +13,7 @@ router.get('/:userID', function(req, res, next) {
 
   res.render('users/read', {
     title: "User Profile",
+    page : "profile",
     user
   });
 });

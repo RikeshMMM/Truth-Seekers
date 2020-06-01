@@ -7,7 +7,8 @@ const { getSources, getNewsDatabase, getNewsArticles, getNewsArticle, getNewsArt
 /** GET : View verify news form */
 router.get('/', function(req, res, next) {
   res.render('verify-news/verify-news-form', {
-    title: "Verify News Articles"
+    title: "Verify News Articles",
+    page : "verify"
   });
 });
 
@@ -44,14 +45,16 @@ router.post('/url', async function(req, res, next) {
     trusted = true;
     res.render('verify-news/verify-news-complete', {
       title: "Verify News Articles Complete",
-      verifyNewsResult: verifyNewsResultTrusted
+      verifyNewsResult: verifyNewsResultTrusted,
+      page : "verify"
     });
 
   }
   else{
     res.render('verify-news/verify-news-complete', {
       title: "Verify News Articles Complete",
-      verifyNewsResult: verifyNewsResultUntrusted
+      verifyNewsResult: verifyNewsResultUntrusted,
+      page : "verify"
     });
   }
 
@@ -101,7 +104,8 @@ router.post('/text', async function(req, res, next) {
 
     res.render('verify-news/verify-news-complete', {
       title: "Verify News Articles Complete",
-      verifyNewsResult: verifyNewsResultTrusted
+      verifyNewsResult: verifyNewsResultTrusted,
+      page : "verify"
     });
 
   }
