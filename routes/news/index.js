@@ -30,6 +30,7 @@ const getNewsArticlesRef = () => firebase.database().ref('/articles');
  * @returns {Promise} - Database snapshot with news articles
  */
 const getNewsArticles = async () => await firebase.database().ref('/articles').once('value');
+
 const getUsers = async () => await firebase.database().ref('/users').once('value');
 
 const getSources = async () => await firebase.database().ref('/sources').once('value');

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { getNewsArticles, getNewsArticle, getNewsArticlesRef, getNewsArticlesBySource } = require('./news/index');
 
-const { getArticleRatingTransactionHistory } = require("./eosjs/index");
+const { getArticleRatingsHistory, getArticleRatingTransactionHistory, pushTransaction, getNewsArticleMeta, getUserAccount } = require("./eosjs/index");
 
 /** GET : Browse all news articles */
 router.get('/', async (req, res, next) => {
@@ -19,12 +19,100 @@ router.get('/', async (req, res, next) => {
 
 router.post('/article-rating', async (req, res, next) => {
   // Get news articles with unique id from database
-  const { articleID, rating } = req.body;
+  const { articleID, article, rating } = req.body;
   const { userData } = req.cookies;
 
-  console.log(articleID, rating, userData)
-  // Render the articles
- 
+  // Replace '_' from username
+  const user = userData.username.replace('_','');
+  const userAccount = await getUserAccount(user);
+  
+  console.log(articleID, article, rating, user, userAccount);
+
+  // Get the next index for article rating
+  const articleRatingsHistory = await getArticleRatingsHistory();
+  const nextIndex = articleRatingsHistory.length+1;
+
+  // Action to execute
+  let actions = [];
+
+  // Rate article action
+  const rateArticleAction = {
+    account: 'covidtimes',
+    name: 'ratearticle',
+    authorization: [{
+        actor: user,
+        permission: 'active',
+    }],
+    data: {
+        id: nextIndex,
+        user: user,
+        article_id: articleID,
+        rating: rating
+    },
+  };
+  actions.push(rateArticleAction);
+  
+  // If the user is a judge
+  if(userAccount.role = "judge") {
+    // Increment article rating count action
+    const incrementCountAction = {
+      account: 'covidtimes',
+      name: 'inccount',
+      authorization: [{
+          actor: 'covidtimes',
+          permission: 'active',
+      }],
+      data: {
+          article_id: articleID
+      },
+    };
+    actions.push(rateArticleAction);
+  }
+
+  // Push the transactions
+  const rateResult = await pushTransaction(actions);
+
+  // Get updated news articles
+  const newsArticleMeta = await getNewsArticleMeta(articleID);
+
+  // If the rating count is equal to 10
+  if(newsArticleMeta.ratingCount >= 10) {
+    const articleRatings = await getArticleRatings(1);
+
+    const userAccounts = (await getUserAccounts()).filter(user => user.role == "judge").map(user => user.user);
+    const judgeRatings = articleRatings.filter(article => userAccounts.indexOf(article.user) != -1);  
+    
+    console.log(judgeRatings);
+
+    const totalRating = await Promise.all(judgeRatings.map(async (article) => article.rating*parseFloat((await getUserAccount(article.user)).weight)));
+
+    const totalWeight = await Promise.all(judgeRatings.map(async (article) => parseFloat((await getUserAccount(article.user)).weight)));
+     
+    const totalRatingSum = totalRating.reduce((total,r) => total + r, 0);
+    const totalWeightSum = totalWeight.reduce((total,w) => total + w, 0);
+
+    const totalScore = Math.round(totalRatingSum / totalWeightSum);
+  
+    // Update Article Rating Action
+    const updateArticleRatingAction = {
+      account: 'covidtimes',
+      name: 'uprating',
+      authorization: [{
+          actor: 'covidtimes',
+          permission: 'active',
+      }],
+      data: {
+        article_id: articleID,
+        rating: totalScore
+      },
+    };
+
+    // Push the transactions
+    const updateResult = await pushTransaction([updateArticleRatingAction]);
+
+  }
+  console.log(rateResult);
+  res.redirect(`/news-articles/${article}`);
 });
 
 /** GET : View news article */
@@ -52,7 +140,7 @@ router.get('/:articleID', async (req, res, next) => {
     articleID : articleID,
     newsArticle,
     similarArticles,
-    articleRatingTransactionHistory
+    articleRatingTransactionHistory,
   });
 })
 

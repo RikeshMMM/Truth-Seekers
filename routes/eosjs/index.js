@@ -22,8 +22,41 @@ const getUserAccounts = async () => {
             "code": "covidtimes",
             "scope": "covidtimes",
             "table": "users",
+            "limit": -1
         });
         return userAccounts.rows;
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const getUserAccount = async (user) => {
+    try {
+        const userAccounts = await rpc.get_table_rows({
+            "json": true,
+            "code": "covidtimes",
+            "scope": "covidtimes",
+            "table": "users",
+            "lower_bound": user,
+            "limit": 1
+        });
+        return userAccounts.rows[0];
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const getNewsArticleMeta = async (articleID) => {
+    try {
+        const userAccounts = await rpc.get_table_rows({
+            "json": true,
+            "code": "covidtimes",
+            "scope": "covidtimes",
+            "table": "newsarticles",
+            "lower_bound": articleID,
+            "limit": 1
+        });
+        return userAccounts.rows[0];
     } catch (err) {
         console.error(err);
     }
@@ -36,11 +69,17 @@ const getArticleRatingsHistory = async () => {
             "code": "covidtimes",
             "scope": "covidtimes",
             "table": "ratings",
+            "limit": -1
         });
         return articleRatingsHistory.rows;
     } catch (err) {
         console.error(err);
     }
+}
+
+const getArticleRatings = async (articleID) => {
+    const articleRating = await getArticleRatingsHistory();
+    return articleRating.filter(article => article.article_id == articleID);
 }
 
 const getUserActionHistory = async (user) => {
@@ -89,13 +128,22 @@ const pushTransaction = async (actionsArray) => {
         if (e instanceof RpcError)
         console.log(JSON.stringify(e.json, null, 2));
     }
-}
+};
+
+const calculateArticleScore = async (articleID) => {
+    const articleRatings = (await getArticleRatings(articleID));
+    return articleRatings;
+} 
 
 module.exports = {
     getUserAccounts,
+    getUserAccount,
+    getNewsArticleMeta,
+    getArticleRatings,
     getArticleRatingsHistory,
     getUserActionHistory,
     getArticleRatingTransactionHistory,
-    pushTransaction
+    pushTransaction,
+    calculateArticleScore
 }
 
