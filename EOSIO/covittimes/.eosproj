@@ -1,0 +1,21 @@
+{
+  "main": "src/covittimes.cpp",
+  "contract": "covittimes",
+  "include": "",
+  "resource": "",
+  "cdt": "cmd",
+  "output": "",
+  "scripts": {
+    "build": ""
+  },
+  "deploy": {
+    "target": "both",
+    "mainnet": "",
+    "kylin": "",
+    "jungle": "",
+    "local": ""
+  },
+  "test": {
+    "npmClient": "yarn"
+  }
+}

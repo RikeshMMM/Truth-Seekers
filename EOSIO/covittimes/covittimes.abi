@@ -1,0 +1,256 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "addarticle",
+            "base": "",
+            "fields": [
+                {
+                    "name": "article_id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "article",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "adduser",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "password",
+                    "type": "string"
+                },
+                {
+                    "name": "role",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "article_rating_info",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "article_id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "rating",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "deccount",
+            "base": "",
+            "fields": [
+                {
+                    "name": "article_id",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "inccount",
+            "base": "",
+            "fields": [
+                {
+                    "name": "article_id",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "news_article_info",
+            "base": "",
+            "fields": [
+                {
+                    "name": "article_id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "article",
+                    "type": "string"
+                },
+                {
+                    "name": "type",
+                    "type": "string"
+                },
+                {
+                    "name": "rating",
+                    "type": "uint64"
+                },
+                {
+                    "name": "ratingCount",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "ratearticle",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "article_id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "rating",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "rmrating",
+            "base": "",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "updateweight",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "weight",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "uprating",
+            "base": "",
+            "fields": [
+                {
+                    "name": "article_id",
+                    "type": "uint64"
+                },
+                {
+                    "name": "rating",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "user_info",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "password",
+                    "type": "string"
+                },
+                {
+                    "name": "role",
+                    "type": "string"
+                },
+                {
+                    "name": "weight",
+                    "type": "float64"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "addarticle",
+            "type": "addarticle",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "adduser",
+            "type": "adduser",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "deccount",
+            "type": "deccount",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "inccount",
+            "type": "inccount",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "ratearticle",
+            "type": "ratearticle",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "rmrating",
+            "type": "rmrating",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "updateweight",
+            "type": "updateweight",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "uprating",
+            "type": "uprating",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "newsarticles",
+            "type": "news_article_info",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "ratings",
+            "type": "article_rating_info",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "users",
+            "type": "user_info",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": []
+}
