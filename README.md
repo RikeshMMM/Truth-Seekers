@@ -1,5 +1,7 @@
 # Truth Seekers - Reliable. Trusted. Verified.
 
+![Truth Seekers](https://github.com/RikeshMMM/Truth-Seekers/blob/master/Truth%20Seekers.png)
+
 ## Official repository for Truth Seekers web application with EOSIO blockchain
 
 ## Proposal for EOSIO Virtual Hackathon: Coding for Change [(View Here)](https://devpost.com/software/truth-seekers)
@@ -37,3 +39,5 @@ We aim to partner up with sponsors to grow our reward and badges system. More im
 - Flutter
 - Node.JS
 - EOSIOJS
+
+**Icon by fontawsome**
