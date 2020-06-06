@@ -8,7 +8,6 @@ router.get('/', async (req, res, next) => {
   // TODO: Send object with article id instead of just array of articles
   // Get news articles with unique id from database
   const newsArticlesObject = (await getNewsArticles()).val();
-  console.log(newsArticlesObject);
 
   // Get news articles as array
   const newsArticles = Object.values(newsArticlesObject);
@@ -28,7 +27,7 @@ router.get('/', async (req, res, next) => {
  
   }
 
-  const user = req.cookies.userData.info.name;
+  if(!req.cookies.userData) return res.redirect("/login");
 
   res.render('index', {
     title: 'Truth Seekers',
