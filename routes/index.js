@@ -29,6 +29,8 @@ router.get('/', async (req, res, next) => {
 
   if(!req.cookies.userData) return res.redirect("/login");
 
+  const user = req.cookies.userData.info.name;
+
   res.render('index', {
     title: 'Truth Seekers',
     trustedArticleTop: trustedArticles.slice(0,1),
