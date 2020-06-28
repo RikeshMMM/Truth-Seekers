@@ -155,7 +155,8 @@ router.get('/:articleID', async (req, res, next) => {
     newsArticle,
     similarArticles,
     articleRatingTransactionHistory,
-    voted
+    voted,
+    page: 'search'
   });
 })
 

@@ -103,11 +103,12 @@
                     <!-- Latest news starts -->
                     <div class="latest-news">
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-sm-6 mb-3">
+                                <% for (let [key, value] of Object.entries(trustedArticleTop)) { %>
                                 <div class="top-news">
                                     <div class="news-article bg-ct-card-dark shadow rounded">
                                         <div class="news-article-img">
-                                            <img src="<%= trustedArticleTop[0].urlToImage %>" alt="COVID" class="img-fluid rounded">
+                                            <img src="<%= value.urlToImage %>" alt="COVID" class="img-fluid rounded">
                                         </div>
                                         <div class="news-article-desc p-3">
                                             <div class="trusted-news-icon news-icon d-flex justify-content-between align-items-center mb-3">
@@ -117,25 +118,26 @@
                                                 </div>
                                                 <div class="d-flex align-items-center">
                                                 <i class="fas fa-star ct-yellow mr-1"></i>
-                                                <h4 class="mb-0"> <%= trustedArticleTop[0].rating %>%</h4>
+                                                <h4 class="mb-0"> <%= value.rating %>%</h4>
                                             </div>
                                             </div>
-                                            <h2 class="mb-3"><%= trustedArticleTop[0].title %></h2>
-                                            <h4 class="text-ct-secondary mb-3"><%= trustedArticleTop[0].source.name %></h4>
-                                            <p class="mb-0"><%= trustedArticleTop[0].description %></p>
+                                            <h2 class="mb-3"><a href="/news-articles/<%= key %>" class="text-decoration-none text-white"><%= value.title %></a></h2>
+                                            <h4 class="text-ct-secondary mb-3"><%= value.source.name %></h4>
+                                            <p class="mb-0"><%= value.description %></p>
                                         </div>
                                     </div>
                                 </div>
+                                <% } %>
                             </div>
                             <div class="col-md-6">
                                 <div class="more-news">
                                     <div class="news-articles">
-                                        <% trustedArticles.forEach(function(article){ %>
+                                        <% for (let [key, value] of Object.entries(trustedArticles)) { %>
                                             <div class="news-article bg-ct-card-dark shadow rounded mb-3">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="news-article-img h-100">
-                                                            <img src="<%= article.urlToImage %>" alt="COVID" class="rounded img-fluid">
+                                                            <img src="<%= value.urlToImage %>" alt="COVID" class="rounded img-fluid">
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
@@ -144,20 +146,20 @@
                                                                 <i class="fas fa-shield-virus fa-lg text-ct-green mr-2"></i>
                                                                 <h4 class="mb-0">Trusted News Source</h4>
                                                             </div>
-                                                            <h4 class="mb-3 font-weight-bold"><%= article.title %></h3>
+                                                            <h4 class="mb-3 font-weight-bold"><a href="/news-articles/<%= key %>" class="text-decoration-none text-white"><%= value.title %></a></h4>
                                                             <div class=" justify-content-between d-flex align-items-center mb-3">
-                                                            <h4 class="text-ct-secondary"><%= article.source.name %></h4>
+                                                            <h4 class="text-ct-secondary"><%= value.source.name %></h4>
 
                                                             <div class="d-flex align-items-center">
                                                                 <i class="fas fa-star ct-yellow mr-1"></i>
-                                                                <h4 class="mb-0"> <%= article.rating %>%</h4>
+                                                                <h4 class="mb-0"> <%= value.rating %>%</h4>
                                                             </div>
                                                         </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <% }) %>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -180,11 +182,12 @@
                     <!-- Latest news starts -->
                     <div class="latest-news">
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-sm-6 mb-3">
+                                <% for (let [key, value] of Object.entries(untrustedArticleTop)) { %>
                                 <div class="top-news">
                                     <div class="news-article bg-ct-card-dark shadow rounded">
                                         <div class="news-article-img">
-                                            <img src="<%= fakeArticleTop[0].urlToImage %>" alt="COVID" class="img-fluid rounded">
+                                            <img src="<%= value.urlToImage %>" alt="COVID" class="img-fluid rounded">
                                         </div>
                                         <div class="news-article-desc p-3">
                                             <div class="trusted-news-icon news-icon d-flex justify-content-between align-items-center mb-3">
@@ -194,24 +197,25 @@
                                                 </div>
                                                 <div class="d-flex align-items-center">
                                                 <i class="fas fa-star ct-yellow mr-1"></i>
-                                                <h4 class="mb-0"> <%= fakeArticleTop[0].rating %>%</h4>
+                                                <h4 class="mb-0"> <%= value.rating %>%</h4>
                                             </div>
                                             </div>
-                                            <h2 class="mb-3"><%= fakeArticleTop[0].title %></h2>
-                                            <p class="mb-0"><%= fakeArticleTop[0].description %></p>
+                                            <h2 class="mb-3"><a href="/news-articles/<%= key %>" class="text-decoration-none text-white"><%= value.title %></a></h2>
+                                            <p class="mb-0"><%= value.description %></p>
                                         </div>
                                     </div>
                                 </div>
+                                <% } %>
                             </div>
                             <div class="col-md-6">
                                 <div class="more-news">
                                     <div class="news-articles">
-                                        <% fakeArticles.forEach(function(article){ %>
+                                        <% for (let [key, value] of Object.entries(untrusted)) { %>
                                         <div class="news-article bg-ct-card-dark shadow rounded mb-3">
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="news-article-img h-100">
-                                                        <img src="<%= article.urlToImage %>" alt="COVID" class="rounded">
+                                                        <img src="<%= value.urlToImage %>" alt="COVID" class="rounded">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -220,20 +224,20 @@
                                                             <i class="fas fa-exclamation-triangle fa-lg text-ct-amber mr-2"></i>
                                                             <h4 class="mb-0">UnTrusted News Source</h4>
                                                         </div>
-                                                        <h4 class="mb-3 font-weight-bold"><%= article.title %></h3>
+                                                        <h4 class="mb-3 font-weight-bold"><a href="/news-articles/<%= key %>" class="text-decoration-none text-white"><%= value.title %></a></h4>
                                                             <div class=" justify-content-between d-flex align-items-center mb-3">
-                                                                <h4 class="text-ct-secondary"><%= article.source.name %></h4>
+                                                                <h4 class="text-ct-secondary"><%= value.source.name %></h4>
     
                                                                 <div class="d-flex align-items-center">
                                                                     <i class="fas fa-star ct-yellow mr-1"></i>
-                                                                    <h4 class="mb-0"> <%= article.rating %>%</h4>
+                                                                    <h4 class="mb-0"> <%= value.rating %>%</h4>
                                                                 </div>
                                                             </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <% }) %>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@ const router = express.Router();
 const domain = require('getdomain')
 
 const { getSources, getNewsDatabase, getNewsArticles, getNewsArticle, getNewsArticlesRef, getNewsArticlesBySource } = require('./news/index');
+const { functions } = require('firebase');
 
 /** GET : View verify news form */
 router.get('/', function(req, res, next) {
@@ -12,28 +13,16 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/url', async function(req, res, next) {
-  const { newsUrl } = req.body;
+async function verifyNewsUrl(newsUrl) {
   var trusted = false;
-  
-  const sources = (await getSources()).val();  
-  console.log(sources)
+  const sources = (await getSources()).val();
   domains = [];
   for (let [key, value] of Object.entries(sources)) {
     domains.push(value.domain);
-  }
-  console.log(domains)
+  };
   dom = domain.hostname(newsUrl);
 
-  const verifyNewsResultTrusted = {
-    result: "trusted",
-    source: { name: dom},
-    articles: {},
-    url : newsUrl
-  };
-
-  // Verify news result - Untrusted
-  const verifyNewsResultUntrusted = {
+  let result = {
     result: "untrusted",
     source: { name: dom},
     articles: {},
@@ -41,39 +30,43 @@ router.post('/url', async function(req, res, next) {
   };
 
   if(domains.includes(dom)){
-
-    trusted = true;
-    res.render('verify-news/verify-news-complete', {
-      title: "Verify News Articles Complete",
-      verifyNewsResult: verifyNewsResultTrusted,
-      page : "verify"
-    });
-
-  }
-  else{
-    res.render('verify-news/verify-news-complete', {
-      title: "Verify News Articles Complete",
-      verifyNewsResult: verifyNewsResultUntrusted,
-      page : "verify"
-    });
+    result = {
+      result: "trusted",
+      source: { name: dom},
+      articles: {},
+      url : newsUrl
+    };
   }
 
-  // res.render('verify-news/verify-news-form', {
-  //   title: "Verify News Articles"
-  // });
+  return result;
+};
+
+/** POST: Route to verify news url */
+router.post('/url', async function(req, res, next) {
+  const { newsUrl } = req.body;
+  const result = await verifyNewsUrl(newsUrl);
+  res.render('verify-news/verify-news-complete', {
+    title: "Verify News Articles Complete",
+    verifyNewsResult: result,
+    page : "verify"
+  });
 });
 
+/** POST: API route to verify news url */
+router.post('/api/verify-url', async function(req, res) {
+  // return res.json(req.body);
+  const { newsUrl } = req.body;
+  const result = await verifyNewsUrl(newsUrl);
+  res.json(result);
+});
 
-router.post('/text', async function(req, res, next) {
-  const { newsText } = req.body;
+async function verifyNewsText(newsText) {
   var trusted = false;
   articleFound = {};
-  console.log(newsText)
-  
-  const articles = (await getNewsArticles()).val();  
-  // console.log(articles)
 
-  content = []
+  const articles = (await getNewsArticles()).val();
+  
+  content = [];
   for (let [key, value] of Object.entries(articles)) {
     if(value.content!=null){
      content.push(value.content);
@@ -84,39 +77,40 @@ router.post('/text', async function(req, res, next) {
   }
   }
 
-  console.log(content)
-
-  console.log("******************")
-  console.log(articleFound)
-
-  const verifyNewsResultUnknown = {
+  let result = {
     result: "unknown",
-  }
+  };
 
-  if(trusted == true){
-
-    const verifyNewsResultTrusted = {
+  if(trusted){
+    result = {
       result: "trusted",
       articles: {articleFound},
       source: {name: articleFound.source.name},
       url : " "
     };
-
-    res.render('verify-news/verify-news-complete', {
-      title: "Verify News Articles Complete",
-      verifyNewsResult: verifyNewsResultTrusted,
-      page : "verify"
-    });
-
   }
-  else{
-    res.render('verify-news/verify-news-complete', {
-      title: "Verify News Articles Complete",
-      verifyNewsResult: verifyNewsResultUnknown,
-      page : "verify"
-    });
-  }
+  
+  return result;
 
+};
+
+/** POST: Route to verify news text */
+router.post('/text', async function(req, res, next) {
+  const { newsText } = req.body;
+  const result = await verifyNewsText(newsText);
+
+  res.render('verify-news/verify-news-complete', {
+    title: "Verify News Articles Complete",
+    verifyNewsResult: result,
+    page : "verify"
+  });
+});
+
+/** POST: API route to verify news text */
+router.post('/api/verify-text', async function(req, res) {
+  const { newsText } = req.body;
+  const result = await verifyNewsText(newsText);
+  res.json(result);
 });
 
 /** GET : View verify news complete results */
