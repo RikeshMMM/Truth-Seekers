@@ -53,7 +53,8 @@ router.post('/url', async function(req, res, next) {
 });
 
 /** POST: API route to verify news url */
-router.get('/api/verify-url', async function(req, res) {
+router.post('/api/verify-url', async function(req, res) {
+  // return res.json(req.body);
   const { newsUrl } = req.body;
   const result = await verifyNewsUrl(newsUrl);
   res.json(result);
