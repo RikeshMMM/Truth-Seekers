@@ -47,7 +47,8 @@ router.get('/:articleID', async (req, res, next) => {
     title: newsArticle.title,
     articleID : articleID,
     newsArticle,
-    similarArticles
+    similarArticles,
+    page: 'search'
   });
 })
 

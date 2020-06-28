@@ -52,6 +52,10 @@ const getNewsArticlesBySource = async (sourceID) => await getNewsArticlesRef().o
 
 const getNewsArticlesBySourceName = async (sourceName) => await getNewsArticlesRef().orderByChild('source/name').equalTo(sourceName).once('value');
 
+const getNewsArticlesByType = async (type, limit = 100) => await getNewsArticlesRef().orderByChild('/type').equalTo(type).limitToLast(limit).once('value');
+
+const getTopNewsArticlesByType = async (type) => await getNewsArticlesRef().orderByChild('/type').equalTo(type).limitToFirst(1).once('value');
+
 module.exports = {
   getUsers,
   getSources,
@@ -60,5 +64,7 @@ module.exports = {
   getNewsArticles,
   getNewsArticle,
   getNewsArticlesBySource,
-  getNewsArticlesBySourceName
+  getNewsArticlesBySourceName,
+  getNewsArticlesByType,
+  getTopNewsArticlesByType
 }
